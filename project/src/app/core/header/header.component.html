@@ -1,0 +1,33 @@
+
+
+
+<header>
+  <div id="box">
+  <div class="top-bar">
+      <h1><span class="highlight">Free</span> Second Hand Furniture</h1>
+  </div>
+  <!-- Navigation -->
+  <h1><a class="home" routerLink="/home"> Furniture </a></h1>
+  
+  <nav>
+      
+  <a class="profile" routerLink="/profile">Profile</a>
+  <a class="about" routerLink="/about-us">About Us</a>
+
+      <a routerLink="/catalog-furniture">Furniture catalog</a>
+      <a routerLink="/add-furniture">Add free furniture</a>
+      
+                      <!-- Logged-in users -->
+      <div id="user">
+        <a routerLink="/catalog-supplier">Supplier catalog</a>
+          <a routerLink="/add-supplier">Add supplier</a>
+          <a routerLink="/logout">Logout</a>
+      </div>
+      <!-- Guest users -->
+      <div id="guest">
+          <a routerLink="/login">Login</a>
+          <a routerLink="/register">Register</a>
+      </div>
+  </nav>
+</div>
+</header>
