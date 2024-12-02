@@ -87,3 +87,14 @@ h1 .highlight {
   color: #FF6347; /* Red color for the word "Free" */
   font-size: 40px; /* Slightly larger font size for the "Free" word */
 }
+
+
+.logo {
+  margin-right: 10px;
+  max-height: 70px;
+  padding: 5px;
+  padding-left: 20px;
+  position: relative;
+  top: 22px; /* Измести иконката надолу с 10px */
+  
+}

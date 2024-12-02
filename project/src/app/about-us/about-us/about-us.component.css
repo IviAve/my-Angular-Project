@@ -143,7 +143,7 @@
 }
 
 #home-page>h1 {
-    color: rgb(252, 168, 151);
+    color:  #553232;
     text-align: center;
     font-weight: 700;
     font-size: 84px;
@@ -157,4 +157,12 @@
     font-size: 60px;
     font-family: "Agency FB";
 }
+h2 {
+    text-align: center; /* Центрира текста хоризонтално */
+    font-size: 24px; /* Може да регулираш размера на шрифта */
+    margin: 0; /* Премахва маргините около елемента */
+    padding: 0; /* Премахва падинга */
+    text-decoration: underline;
+  }
+  
 
