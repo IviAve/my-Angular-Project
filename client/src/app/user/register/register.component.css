@@ -203,7 +203,7 @@ label[for="female"] {
 input[type="nickname"],
 input[type="password"],
 input[type="number"],
-input[type="phone"],
+input[type="tel"],
 input[type="text"],
 input[type="email"] {
   background: #ecf0f3;
