@@ -1,3 +1,5 @@
+/* welcome component */
+
 
 
 #welcome-people {
@@ -44,7 +46,7 @@
 }
 
 .welcome-message h3 {
-  color: #ffffff;
+  color: #b36d6d;
   font-size: 600%;
   text-shadow: none;
   line-height: 1;
@@ -79,6 +81,7 @@
   margin-top: 20px;
   padding: 50px;
   margin-left: 50px;
+  background-color: #f5f5f5; /* мръсно бяло */
   background-position: right 35% bottom 45%;
   box-sizing: border-box;
   border-radius: 15px;

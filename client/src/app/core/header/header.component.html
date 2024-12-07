@@ -1,34 +1,77 @@
 
 
+<!-- html with module ng -->
+
+<!-- <header>
+  <div id="box">
+    <div class="top-bar">
+      <h1><span class="highlight">Free</span> Used Furniture</h1>
+    </div>
+    
+    <img src="sofa.png" alt="sofa" class="logo" />
+    <h1><a class="home" routerLink="/home">Furniture</a></h1>
+
+    <nav>
+      
+      <div *ngIf="isLoggedIn; else guestLinks">
+        <a class="profile" routerLink="/profile">{{ username }}'s Profile</a>
+        <a (click)="logout()">Logout</a>
+        <a routerLink="/catalog-furniture">Furniture catalog</a>
+        <a routerLink="/add-furniture">Add free furniture</a>
+        <div id="user">
+          <a routerLink="/catalog-supplier">Supplier catalog</a>
+          <a routerLink="/add-supplier">Add supplier</a>
+          <a class="about" routerLink="/about-us">About Us</a>
+        </div>
+      </div>
+
+      
+      <ng-template #guestLinks>
+        <div id="guest">
+          <a class="about" routerLink="/about-us">About Us</a>
+          <a routerLink="/login">Login</a>
+          <a routerLink="/register">Register</a>
+        </div>
+      </ng-template>
+    </nav>
+  </div>
+</header> -->
+
+
+<!-- html with @if -->
 
 <header>
   <div id="box">
-  <div class="top-bar">
+    <div class="top-bar">
       <h1><span class="highlight">Free</span> Used Furniture</h1>
-  </div>
-  <!-- Navigation -->
-  <img src="sofa.png" alt="sofa" class="logo" />
-  <h1><a class="home" routerLink="/home"> Furniture </a></h1>
-  
-  <nav>
-      
-  <a class="profile" routerLink="/profile">Profile</a>
-  <a class="about" routerLink="/about-us">About Us</a>
+    </div>
+    
+    <img src="sofa.png" alt="sofa" class="logo" />
+    <h1><a class="home" routerLink="/home">Furniture</a></h1>
 
-      <a routerLink="/catalog-furniture">Furniture catalog</a>
-      <a routerLink="/add-furniture">Add free furniture</a>
-      
-                      <!-- Logged-in users -->
-      <div id="user">
-        <a routerLink="/catalog-supplier">Supplier catalog</a>
+    <nav>
+      @if (isLoggedIn) {
+        <a class="profile" routerLink="/profile">{{ username }}'s Profile</a>
+        <a (click)="logout()">Logout</a>
+
+        <a routerLink="/catalog-furniture">Furniture catalog</a>
+        <a routerLink="/add-furniture">Add free furniture</a>
+        
+
+        
+        <div id="user">
+          <a routerLink="/catalog-supplier">Supplier catalog</a>
           <a routerLink="/add-supplier">Add supplier</a>
-          <a routerLink="/logout">Logout</a>
-      </div>
-      <!-- Guest users -->
-      <div id="guest">
+          <a class="about" routerLink="/about-us">About Us</a>
+        </div>
+      } @else {
+        
+        <div id="guest">
+          <a class="about" routerLink="/about-us">About Us</a>
           <a routerLink="/login">Login</a>
           <a routerLink="/register">Register</a>
-      </div>
-  </nav>
-</div>
+        </div>
+      }
+    </nav>
+  </div>
 </header>

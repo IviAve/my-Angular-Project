@@ -1,33 +1,33 @@
+@if (isLoading) {
+  <app-loader />
+  }@else {
+
 <section id="catalog-furniture">
-    <h1>All furniture</h1>
-    <!-- Display div: with information about every game (if any) -->
-    <div class="allFurnits">
-        <div class="allFurnits-info">
-            <img src="/chair-1.png">
-            <h6>chair</h6>
-            <h2>home</h2>
-            <a routerLink="/details-furniture" class="details-button">Details</a>
-        </div>
+  <h1>All furniture</h1>
+  @if (furnitures.length > 0 ) {
+  @for (furniture of furnitures; track $index) {
+  
+  <!-- Display div: with information about every game (if any) -->
+  <div class="allFurnits">
+      <div class="allFurnits-info">
+          <img src={{furniture.imageUrl}}>
+          <h6><a [routerLink]="furniture._id" class="normal"></a></h6>
+          <h2>{{furniture.category}}</h2>
+          <h2>{{furniture.location}}</h2>
+          <h2>{{furniture.condition}}</h2>
 
-    </div>
-    <div class="allFurnits">
-        <div class="allFurnits-info">
-            <img src="/chair-2.jpg">
-            <h6>chair</h6>
-            <h2>home</h2>
-            <a routerLink="/details-furniture" class="details-button">Details</a>
-        </div>
+          <a routerLink="/details-furniture" class="details-button">Details</a>
+      </div>
 
-    </div>
-    <div class="allFurnits">
-        <div class="allFurnits-info">
-            <img src="/chair-3.jpg">
-            <h6>chair</h6>
-            <h2>home</h2>
-            <a routerLink="/details-furniture" class="details-button">Details</a>
-        </div>
-    </div>
-
-    <!-- Display paragraph: If there is no games  -->
-    <h3 class="no-articles">No free furniture yet</h3>
+  </div>
+  
+  
+  }
+  <!---->
+}
+  <!-- Display paragraph: If there is no games  -->
+  @else {
+  <h3 class="no-articles">No free furniture yet</h3>
+  }
 </section>
+  }

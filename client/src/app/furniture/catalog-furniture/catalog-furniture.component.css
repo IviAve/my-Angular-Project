@@ -1,84 +1,134 @@
+/* Стил за съобщението "No free furniture yet" */
 .no-articles {
-    color: white;
-    text-align: center;
-    font-weight: 700;
-    font-size: 60px;
-    font-family: "Agency FB";
+  color: white;
+  text-align: center;
+  font-weight: 700;
+  font-size: 60px;
+  font-family: "Agency FB", sans-serif;
+  margin-top: 20px;
+  padding: 10px;
 }
 
+/* Стил за контейнера на каталога */
 #catalog-furniture {
-    background-color: transparent;
-    box-shadow: 0px 0px 40px 0px;
-    overflow: hidden;
-  
-    padding: 20px;
-    height: auto;
-    width: 900px;
+  background-color: transparent;
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  height: auto;
+  width: 90%; /* Увеличавам ширината, за да изглежда по-добре на различни устройства */
+  max-width: 900px;
+  margin: 0 auto; /* Центрирам контейнера */
+  border-radius: 8px; /* Добавям малки заоблени ъгли */
 }
 
-#catalog-furniture>h1 {
-    color: #fff;
-    font-family: "Agency FB";
-    font-size: 48px;
-    font-weight: 700;
-    margin-top: 10px;
-    text-transform: uppercase;
-    text-align: center;
+/* Стил за заглавието на каталога */
+#catalog-furniture > h1 {
+  color: #fff;
+  font-family: "Agency FB", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
+/* Стил за всеки елемент в каталога */
 .allFurnits {
-    background-color: #fff;
-   
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    max-width: 100%;
-    margin: 15px;
-    overflow: hidden;
-    width: 600px auto;
-    min-height: 210px;
-    height: auto;
+  background-color: #f3f0ec;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row; /* Поставяме съдържанието в ред */
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px; /* Заоблени ъгли за всеки елемент */
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
 }
 
+/* Стил за информацията за мебелта */
 .allFurnits-info {
-    padding: 30px;
-    position: relative;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Разпределяме съдържанието вертикално */
+}
+
+/* Стил за снимката на мебелта */
+.allFurnits-info > img {
+  margin-top: -10px;
+  height: 140px;
+  width: 140px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 5px;
+  border-radius: 50%; /* Закръгляме снимката */
+  border: 2px solid #ddd; /* Добавяме лека рамка около снимката */
+}
+
+/* Заглавия за категория и локация */
+.allFurnits-info > h6, .allFurnits-info > h2 {
+  font-size: 18px;
+  font-weight: 750;
+  color: #161618;
+  margin: 5px 0;
+}
+
+/* Стил за бутона с подробности */
+
+
+/* Премахване на всякакви прави ъгли за елементите */
+.allFurnits, .allFurnits-info, .details-button {
+  border-radius: 8px;
+}
+
+/* Респонсив стилове за мобилни устройства */
+@media (max-width: 768px) {
+  #catalog-furniture {
     width: 100%;
+  }
+
+  .allFurnits {
+    flex-direction: column; /* Поставяме елементите вертикално при по-малки екрани */
+    align-items: center;
+  }
+
+  .allFurnits-info > img {
+    position: relative;
+    margin: 0;
+    max-width: 120px;
+  }
+
+  .details-button {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
 }
 
-.allFurnits-info>img {
-    margin-top: -10px;
-   
-    height: 140px;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    float: right;
-    padding: 5px;
-    width: 140px;
-}
-
-.allFurnits-info>h6 {
-    font-size: 20px;
-    font-weight: 750;
-    color: #161618;
-}
-
-.allFurnits-info>h2 {
-    font-size: 20px;
-    font-weight: 750;
-    color: #161618;
-}
 
 .details-button {
-    background-color: #2A265F;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-size: 20px;
-    position: absolute;
-    bottom: 30px;
-    text-align: left;
-    letter-spacing: 1px;
-    padding: 10px;
-    margin-top: auto;
-    margin-left: 20px;
+  background-color: #2A265F;
+  color: #fff;
+  font-size: 18px;
+  padding: 12px 20px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  margin: 20px auto; /* Центрираме бутона по хоризонтала */
+  display: block; /* Правим бутона блоков елемент, за да се подреди централно */
+  width: auto; /* Задаваме автоматична ширина, за да не е прекалено широк */
+  max-width: 200px; /* Ограничаваме максималната ширина на бутона */
+}
+
+/* Промяна на цвета на бутона при hover */
+.details-button:hover {
+  background-color: #1a1c4d;
+  cursor: pointer;
 }

@@ -1,16 +1,5 @@
 /* footer  */
 
-/* footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #234465;
-  height: 8vh;
-  color: white;
-  text-shadow: 1px 1px black;
-  text-align: center;
-} */
-
 footer {
   padding: 0.5em;
   width: 100%;
@@ -34,4 +23,5 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
 

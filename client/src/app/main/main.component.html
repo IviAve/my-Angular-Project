@@ -1,10 +1,9 @@
 @if (isLoggedIn) {
-   <!-- <div class="container">  -->
-    
- <app-add-furniture></app-add-furniture>
- <app-add-supplier></app-add-supplier>
-<!-- </div> -->
+<div class="container">
+  <app-catalog-furniture />
+  <app-add-furniture/>
+  
+</div>
 } @else {
 <app-home />
-
 }

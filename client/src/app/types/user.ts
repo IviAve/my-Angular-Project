@@ -1,5 +1,6 @@
 export interface User {
- 
+  furnitures: string[];
+  //posts: string[];
   _id: string;
   tel: string;
   email: string;
@@ -11,9 +12,15 @@ export interface User {
 }
 
 export interface UserForAuth {
- userName: string;
+  username: string;
   email: string;
- 
+  tel?: string;
   password: string;
   id: string;
+}
+
+export interface ProfileDetails {
+  username: string;
+  email: string;
+  tel: string;
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment.development';
+
+import { Furniture } from './types/furniture';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,33 @@ import { environment } from '../environments/environment.development';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
- 
+  getThreeFurnitures(){
+    // todo;
+  }
 
+  getFurnitures() {
+    return this.http.get<Furniture[]>(`/api/furnitures`);
+  }
+
+  getSingleFurniture(id: string) {
+    return this.http.get<Furniture>(`/api/furnitures/${id}`);
+  }
+
+  createFurniture(category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
+    const payload = { category, condition, delivery, location, phone, imageUrl, summary };
+    return this.http.post<Furniture>(`/api/furnitures`, payload);
+  }
+
+  // CRUD operations
+  // update -> http.put
+  // updateFurniture(category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
+  //   const payload = { category, condition, delivery, location, phone, imageUrl, summary };
+  //   return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, payload);
+  // }
+
+  
+  }
+
+  //delete -> http.delete furniture ID
+  
  
-}
