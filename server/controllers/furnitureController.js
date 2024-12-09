@@ -8,15 +8,29 @@ function getFurnitures(req, res, next) {
         .catch(next);
 }
 
+// function getFurniture(req, res, next) {
+//     const { furnitureId } = req.params;
+
+//     furnitureModel.findById(furnitureId)
+//         .populate({
+//            // path : 'comments',
+//             populate : {
+//               path : 'userId'
+//             }
+//           })
+//         .then(furniture => res.json(furniture))
+//         .catch(next);
+// }
+
+
 function getFurniture(req, res, next) {
     const { furnitureId } = req.params;
 
     furnitureModel.findById(furnitureId)
         .populate({
-           // path : 'comments',
-            populate : {
+           
               path : 'userId'
-            }
+            
           })
         .then(furniture => res.json(furniture))
         .catch(next);

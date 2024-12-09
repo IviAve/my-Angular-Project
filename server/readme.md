@@ -1,4 +1,4 @@
-# REST-api for Angular course in SoftUni
+# REST-api for Angular project
 
 ## Getting started
 Let's make our first API request to the REST-api!
@@ -76,8 +76,8 @@ Code: 200
 Content: 
 ``` 
 {
-    "themes": [],
-    "posts": [],
+    "furniture": [],
+    "comment": [],
     "_id": "5f1875690916010017964978",
     "name": "John Doe",
     "email": "john@email.com",

@@ -47,14 +47,17 @@ const furnitureSchema = new mongoose.Schema({
         required: [true, 'Summary is required.'],
         minlength: [10, 'Summary must be at least 10 characters long.'],
       },
+
       userId: {
         type: ObjectId,
        ref: "User"
-   },
 
-  // posts: [{
+       
+   },  
+
+  // comment: [{
     //         type: ObjectId,
-    //         ref: "Post"
+    //         ref: "Comments"
     //     }],
 }, { timestamps: { createdAt: 'created_at' } });
 

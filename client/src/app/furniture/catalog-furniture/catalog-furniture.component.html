@@ -16,7 +16,10 @@
           <h2>{{furniture.location}}</h2>
           <h2>{{furniture.condition}}</h2>
 
-          <a routerLink="/details-furniture" class="details-button">Details</a>
+          <!-- <a [routerLink]="furniture._id" class="details-button">Details</a> -->
+          <a [routerLink]="['/furnitures', furniture._id]" class="details-button">Details</a>
+
+
       </div>
 
   </div>

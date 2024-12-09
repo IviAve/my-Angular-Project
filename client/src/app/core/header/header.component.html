@@ -19,8 +19,8 @@
         <a routerLink="/catalog-furniture">Furniture catalog</a>
         <a routerLink="/add-furniture">Add free furniture</a>
         <div id="user">
-          <a routerLink="/catalog-supplier">Supplier catalog</a>
-          <a routerLink="/add-supplier">Add supplier</a>
+          <a routerLink="/catalog-transport-services">transport-services catalog</a>
+          <a routerLink="/add-transport-services">Add transport-services</a>
           <a class="about" routerLink="/about-us">About Us</a>
         </div>
       </div>
@@ -48,20 +48,17 @@
     
     <img src="sofa.png" alt="sofa" class="logo" />
     <h1><a class="home" routerLink="/home">Furniture</a></h1>
-
+    
     <nav>
+      <a routerLink="/catalog-transport-services">transport-services catalog</a>
+      <a routerLink="/catalog-furniture">Furniture catalog</a>
       @if (isLoggedIn) {
         <a class="profile" routerLink="/profile">{{ username }}'s Profile</a>
         <a (click)="logout()">Logout</a>
 
-        <a routerLink="/catalog-furniture">Furniture catalog</a>
-        <a routerLink="/add-furniture">Add free furniture</a>
-        
-
-        
         <div id="user">
-          <a routerLink="/catalog-supplier">Supplier catalog</a>
-          <a routerLink="/add-supplier">Add supplier</a>
+          <a routerLink="/add-furniture">Add free furniture</a>
+          <a routerLink="/add-transport-services">Add transport-services</a>
           <a class="about" routerLink="/about-us">About Us</a>
         </div>
       } @else {

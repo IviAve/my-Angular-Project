@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { Furniture } from '../../types/furniture';
 import { UserService } from '../../user/user.service';
@@ -8,7 +8,7 @@ import { HomeComponent } from '../../home/home.component';
 @Component({
   selector: 'app-details-furniture',
   standalone: true,
-  imports: [HomeComponent],
+  imports: [HomeComponent,RouterLink],
   templateUrl: './details-furniture.component.html',
   styleUrl: './details-furniture.component.css',
 })
@@ -33,7 +33,12 @@ export class DetailsFurnitureComponent implements OnInit {
     const id = this.route.snapshot.params['furnitureId'];
 
     this.apiService.getSingleFurniture(id).subscribe((furniture) => {
+      
       this.furniture = furniture;
     });
   }
+
+
+  
+  
 }

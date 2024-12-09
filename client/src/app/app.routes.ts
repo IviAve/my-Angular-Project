@@ -11,6 +11,11 @@ import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { CatalogFurnitureComponent } from './furniture/catalog-furniture/catalog-furniture.component';
 import { AddFurnitureComponent } from './furniture/add-furniture/add-furniture.component';
 import { AboutUsComponent } from './about-us/about-us/about-us.component';
+import { AddTransportServicesComponent } from './transport-services/add-transport-services/add-transport-services.component';
+import { CatalogTransportServicesComponent } from './transport-services/catalog-transport-services/catalog-transport-services.component';
+import { DetailsTransportServicesComponent } from './transport-services/details-transport-services/details-transport-services.component';
+import { EditTransportServicesComponent } from './transport-services/edit-transport-services/edit-transport-services.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -29,11 +34,11 @@ export const routes: Routes = [
       {
         path: ':furnitureId',
         component: DetailsFurnitureComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
     ],
   },
-
+ 
 
   {path: 'catalog-furniture',component: CatalogFurnitureComponent},
   
@@ -49,6 +54,10 @@ export const routes: Routes = [
   // {path: 'add-furniture',component: AddFurnitureComponent},
 
   // End - furniture routing
+  {path:'add-transport-services', component: AddTransportServicesComponent},
+  {path:'details-transport-services', component: DetailsTransportServicesComponent},
+  {path:'catalog-transport-services', component: CatalogTransportServicesComponent},
+  {path:'edit-transport-services', component: EditTransportServicesComponent},
 
   { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },

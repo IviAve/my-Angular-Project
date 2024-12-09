@@ -1,72 +1,41 @@
 
-
-<div class="container">
+<section id="furniture-details">
+    <h1>Details</h1>
+    <div class="info-section">
+      <div class="furniture-header">
+        <!-- Corrected the syntax for image binding -->
+        <img class="furnitureImage" src="{{furniture.imageUrl}}" alt="{{furniture.category}}" />
   
-  <div class="theme-content">
-    
-
-    @if(!isLoggedIn){
-    <app-home />
-    }
-    <div class="theme-title">
-      <div class="theme-name-wrapper">
-        <div class="theme-name">
-          <h2>{{ furniture.category }}</h2>
-          <p>
-            Date: <time>{{ furniture.created_at }}</time>
-          </p>
-        </div>
-        <div class="subscribers">
-          <p>
-            Subscribers: <span>{{ furniture.subscribers.length || 0 }}</span>
-          </p>
-          <!-- <button class="subscribe">Subscribe</button>
-                    <button class="unsubscribe">Unsubscribe</button> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- comment  -->
-
-    <!-- @for (post of furniture.posts; track $index) {
-    <div class="comment">
-      <header class="header">
+       
+  
+        <!-- Display furniture details -->
+        <h1>{{ furniture.category }}</h1>
+        <h3>{{ furniture.condition }}</h3>
+        <h3>{{ furniture.delivery }}</h3>
+        <h3>{{ furniture.location }}</h3>
+        <h3>{{ furniture.phone }}</h3>
+        <h3>{{ furniture.summary }}</h3>
+  
+        <!-- Display the created date -->
         <p>
-          <span>{{ post.userId.username }}</span> posted on
-          <time>{{ post.created_at }}</time>
+           <time>Date: <time>{{ furniture.created_at }}</time></time>
         </p>
-      </header>
-      <div class="comment-main">
-        <div class="userdetails">
-          <img src="./profile.png" alt="avatar" />
-        </div>
-        <div class="post-content">
-          <p>
-            {{ post.text }}
-          </p>
-        </div>
-      </div>
-      <div class="footer"> -->
-        <!-- <i class="fas fa-thumbs-up"></i>
-                <i class="fas fa-thumbs-down"></i> -->
-        <!-- <p>
-          <span>{{ post.likes.length || 0 }}</span> likes
-        </p>
+       <!-- Edit/Delete buttons ( Only for creator of this game )  -->
+       <div class="buttons">
+        <a routerLink="/edit-furniture" class="button">Edit</a>
+        <a href="/catalog-furniture" class="button">Delete</a>
+    </div>
       </div>
     </div>
+  </section>
+  
 
-    } @if(isLoggedIn){
-    <div class="answer-comment">
-      <p>
-        <span>{{ username }}</span> comment:
-      </p>
-      <div class="answer">
-        <form>
-          <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
-          <button>Post</button>
-        </form>
-      </div>
-    </div>
-    }
-  </div>
-</div> -->
+
+
+
+
+
+
+
+
+
