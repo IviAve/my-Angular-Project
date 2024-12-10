@@ -12,10 +12,17 @@ router.get('/:furnitureId', furnitureController.getFurniture);
 
 //router.post('/:furnitureId', auth(), postController.createPost);
 
-router.put('/:furnitureId', auth(), furnitureController.subscribe);
+router.put('/:furnitureId/subscribe', auth(), furnitureController.subscribe);
 
-//router.put('/:furnitureeId/posts/:postId', auth(), postController.editPost);
-//router.delete('/:furnitureId/posts/:postId', auth(), postController.deletePost);
+router.put('/:furnitureId', auth(), furnitureController.editFurniture);
+router.delete('/:furnitureId', auth(), furnitureController.deleteFurniture);
+
+
+
+
+// router.put('/:furnitureId/posts/:postId', auth(), postController.editPost);
+// router.delete('/:furnitureId/posts/:postId', auth(), postController.deletePost);
+
 
  //router.get('/my-trips/:id/reservations', auth(), furnitureController.getReservations);
 

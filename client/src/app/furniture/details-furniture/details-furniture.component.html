@@ -21,10 +21,12 @@
            <time>Date: <time>{{ furniture.created_at }}</time></time>
         </p>
        <!-- Edit/Delete buttons ( Only for creator of this game )  -->
+       @if (isLoggedIn && isOwner) {
        <div class="buttons">
         <a routerLink="/edit-furniture" class="button">Edit</a>
-        <a href="/catalog-furniture" class="button">Delete</a>
+        <a  class="button" (click)="delete()">Delete</a>
     </div>
+  }
       </div>
     </div>
   </section>

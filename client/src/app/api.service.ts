@@ -28,14 +28,29 @@ export class ApiService {
 
   // CRUD operations
   // update -> http.put
-  // updateFurniture(category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
-  //   const payload = { category, condition, delivery, location, phone, imageUrl, summary };
-  //   return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, payload);
-  // }
+  updateFurniture(furnitureId: string, category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
+    const payload = { category, condition, delivery, location, phone, imageUrl, summary };
+    return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, payload);
+   }
 
-  
+
+    //delete -> http.delete furniture ID
+
+    deleteFurniture(furnitureId: string) {
+      return this.http.delete(`/api/furnitures/${furnitureId}`);
+    }
+    // 
+
+
+    
+   
   }
 
-  //delete -> http.delete furniture ID
+
+  
+  
+
+ 
+  
   
  

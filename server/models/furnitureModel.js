@@ -51,9 +51,11 @@ const furnitureSchema = new mongoose.Schema({
       userId: {
         type: ObjectId,
        ref: "User"
+      },
 
+      
        
-   },  
+    
 
   // comment: [{
     //         type: ObjectId,
