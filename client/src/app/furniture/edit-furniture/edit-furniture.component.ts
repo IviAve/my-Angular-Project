@@ -23,7 +23,7 @@ import { UserService } from '../../user/user.service';
 @Component({
   selector: 'app-edit-furniture',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,],
   templateUrl: './edit-furniture.component.html',
   styleUrl: './edit-furniture.component.css',
 })
@@ -39,11 +39,17 @@ export class EditFurnitureComponent implements OnInit {
 
   ngOnInit(): void {
     const furnitureId = this.route.snapshot.params['furnitureId'];
-
+    console.log('furniture from client ID:', furnitureId);
     // Зареждаме данните на мебелта за редактиране
-    this.apiService.getSingleFurniture(furnitureId).subscribe((furniture: Furniture) => {
-      this.furniture = furniture;
-    });
+    if (furnitureId) {
+      this.apiService.getSingleFurniture(furnitureId).subscribe((furniture: Furniture) => {
+        this.furniture = furniture;
+        console.log('Furniture data:', this.furniture);  // Проверете дали мебелта се зарежда
+      });
+    } else {
+      console.error('Furniture ID not found');
+    }
+  
   }
 
   editFurniture(form: NgForm) {

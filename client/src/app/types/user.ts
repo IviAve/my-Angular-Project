@@ -7,7 +7,7 @@ export interface User {
   email: string;
   username: string;
   password: string;
-  created_at: string;
+  createdAt: string;
   updatedAt: string;
   __v: number;
 }

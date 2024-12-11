@@ -36,26 +36,7 @@ export class DetailsFurnitureComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
-//   ngOnInit(): void {
-//     const furnitureId = this.route.snapshot.params['furnitureId'];
-// // const furnitureId = this.getFurnitureId;
-//     this.apiService.getSingleFurniture(furnitureId).subscribe((furniture) => {
-      
-//       this.furniture = furniture;
-//       console.log('Furniture data:', furniture); // Логвайте, за да проверите стойностите
-//       if (this.userService.isLogged) {
 
-//         this.isOwner = this.furniture.owner === this.userService.user?._id;
-//         console.log('Is owner:', this.isOwner);  // Логвайте, за да проверите дали isOwner е true
-        
-//       }
-        
-      
-//       //this.isOwner = this.userService.user?._id === furniture.userId;
-//     });
-//   }
-
-// тест от гпт 
 
 ngOnInit(): void {
   const furnitureId = this.route.snapshot.params['furnitureId'];

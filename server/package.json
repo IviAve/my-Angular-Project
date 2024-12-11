@@ -1,11 +1,11 @@
 {
-  "name": "server",
+  "name": "rest-api",
   "version": "1.0.0",
-  "description": "REST-api for back-end of React project",
+  "description": "REST-api ",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node .",
+    "dev": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",

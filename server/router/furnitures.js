@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../utils');
-const { furnitureController, postController } = require('../controllers');
+const { furnitureController, commentController } = require('../controllers');
 
 // middleware that is specific to this router
 
@@ -10,7 +10,7 @@ router.post('/', auth(), furnitureController.createFurniture);
 
 router.get('/:furnitureId', furnitureController.getFurniture);
 
-//router.post('/:furnitureId', auth(), postController.createPost);
+//router.post('/:furnitureId', auth(), commentController.createComment);
 
 router.put('/:furnitureId/subscribe', auth(), furnitureController.subscribe);
 

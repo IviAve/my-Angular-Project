@@ -18,8 +18,8 @@ export class ApiService {
     return this.http.get<Furniture[]>(`/api/furnitures`);
   }
 
-  getSingleFurniture(id: string) {
-    return this.http.get<Furniture>(`/api/furnitures/${id}`);
+  getSingleFurniture(furnitureId: string) {
+    return this.http.get<Furniture>(`/api/furnitures/${furnitureId}`);
   }
 
   createFurniture(category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
@@ -31,6 +31,9 @@ export class ApiService {
   // update -> http.put
   // Във ApiService
   updateFurniture(furnitureId: string, updatedFurniture: Furniture): Observable<Furniture> {
+    
+    console.log(`Requesting furniture: /api/furnitures/${furnitureId}`);
+
     return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, updatedFurniture);
   }
   

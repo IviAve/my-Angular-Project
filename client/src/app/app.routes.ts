@@ -52,7 +52,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   
-  { path: 'edit-furniture/:furnitureId', component: EditFurnitureComponent },
+  { path:'edit-furniture/:furnitureId', component: EditFurnitureComponent },
 
 
   // End - furniture routing

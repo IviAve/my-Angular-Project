@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     //     type: ObjectId,
     //     ref: "Post"
     // }]
-}, { timestamps: { createdAt: 'created_at' } });
+}, { timestamps: true });
 
 userSchema.methods = {
     matchPassword: function (password) {
