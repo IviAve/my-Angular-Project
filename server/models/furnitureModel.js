@@ -61,6 +61,6 @@ const furnitureSchema = new mongoose.Schema({
     //         type: ObjectId,
     //         ref: "Comments"
     //     }],
-}, { timestamps: { createdAt: 'created_at' } });
+}, { timestamps: true });
 
 module.exports = mongoose.model('Furniture', furnitureSchema);

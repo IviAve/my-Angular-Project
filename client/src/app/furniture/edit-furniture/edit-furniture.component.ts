@@ -18,13 +18,14 @@ import { ApiService } from '../../api.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Furniture } from '../../types/furniture';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-edit-furniture',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './edit-furniture.component.html',
-  styleUrls: ['./edit-furniture.component.css'],
+  styleUrl: './edit-furniture.component.css',
 })
 export class EditFurnitureComponent implements OnInit {
   furniture: Furniture | null = null;
@@ -32,6 +33,7 @@ export class EditFurnitureComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private router: Router,
+    private userService: UserService,
     private route: ActivatedRoute
   ) {}
 
@@ -49,16 +51,45 @@ export class EditFurnitureComponent implements OnInit {
       console.error('Form is invalid');
       return;
     }
-
+  
     const { category, condition, delivery, location, phone, imageUrl, summary } = form.value;
-
-    const updatedFurniture = { ...this.furniture, category, condition, delivery, location, phone, imageUrl, summary };
-
+  
+    if (!this.furniture?._id) {
+      console.error('Furniture ID is missing');
+      return;
+    }
+  
+    // Създайте обект с актуализираните данни, като запазите стойностите на неактуализираните полета.
+    const updatedFurniture: Furniture = {
+      _id: this.furniture._id, // Оставете съществуващото _id
+      userId: this.furniture.userId, // Запазете съществуващия userId
+      owner: this.furniture.owner, // Запазете съществуващия owner
+      subscribers: this.furniture.subscribers || [], // Запазете subscribers или задайте празен масив
+      createdAt: this.furniture.createdAt, // Запазете съществуващото created_at
+      updatedAt: new Date().toISOString(), // Актуализирайте updatedAt с новата дата
+      __v: this.furniture.__v, // Запазете съществуващото __v
+      category,
+      condition,
+      delivery,
+      location,
+      phone,
+      imageUrl,
+      summary
+    };
+  
     // Актуализираме мебелта чрез API
-    this.apiService.updateFurniture(this.furniture?._id, updatedFurniture).subscribe(() => {
-      this.router.navigate(['/catalog-furniture']); // Пренасочваме към каталога след успешна редакция
-      form.reset(); // Нулираме формата
+    this.apiService.updateFurniture(this.furniture._id, updatedFurniture).subscribe({
+      next: () => {
+        this.router.navigate(['/catalog-furniture']); // Пренасочваме към каталога след успешна редакция
+        form.reset(); // Нулираме формата
+      },
+      error: (err) => {
+        console.error('Error updating furniture:', err);
+      }
     });
   }
+  
+  
+  
 }
 

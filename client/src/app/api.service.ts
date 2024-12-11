@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Furniture } from './types/furniture';
 
@@ -28,10 +29,13 @@ export class ApiService {
 
   // CRUD operations
   // update -> http.put
-  updateFurniture(furnitureId: string, category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
-    const payload = { category, condition, delivery, location, phone, imageUrl, summary };
-    return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, payload);
-   }
+  // Във ApiService
+  updateFurniture(furnitureId: string, updatedFurniture: Furniture): Observable<Furniture> {
+    return this.http.put<Furniture>(`/api/furnitures/${furnitureId}`, updatedFurniture);
+  }
+  
+  
+
 
 
     //delete -> http.delete furniture ID

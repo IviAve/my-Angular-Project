@@ -15,6 +15,7 @@ import { AddTransportServicesComponent } from './transport-services/add-transpor
 import { CatalogTransportServicesComponent } from './transport-services/catalog-transport-services/catalog-transport-services.component';
 import { DetailsTransportServicesComponent } from './transport-services/details-transport-services/details-transport-services.component';
 import { EditTransportServicesComponent } from './transport-services/edit-transport-services/edit-transport-services.component';
+import { EditFurnitureComponent } from './furniture/edit-furniture/edit-furniture.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -51,7 +52,8 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   
-  // {path: 'add-furniture',component: AddFurnitureComponent},
+  { path: 'edit-furniture/:furnitureId', component: EditFurnitureComponent },
+
 
   // End - furniture routing
   {path:'add-transport-services', component: AddTransportServicesComponent},

@@ -18,12 +18,13 @@
   
         <!-- Display the created date -->
         <p>
-           <time>Date: <time>{{ furniture.created_at }}</time></time>
+           <time>Date: <time>{{ furniture.createdAt }}</time></time>
         </p>
        <!-- Edit/Delete buttons ( Only for creator of this game )  -->
        @if (isLoggedIn && isOwner) {
        <div class="buttons">
-        <a routerLink="/edit-furniture" class="button">Edit</a>
+        <a routerLink="/edit-furniture/:furnitureId" class="button">Edit</a>
+        
         <a  class="button" (click)="delete()">Delete</a>
     </div>
   }

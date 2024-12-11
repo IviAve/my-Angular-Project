@@ -1,6 +1,7 @@
 export interface User {
   furnitures: string[];
   //posts: string[];
+  furniture: string[];
   _id: string;
   tel: string;
   email: string;

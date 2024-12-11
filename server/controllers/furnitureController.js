@@ -76,35 +76,29 @@ function editFurniture(req, res, next) {
     const { _id: userId } = req.user;  // ID на текущия потребител
 
     // Намиране на мебелта по ID и проверка дали тя принадлежи на текущия потребител
-    furnitureModel
-        .findById(furnitureId)
-        .then(furniture => {
-            if (!furniture) {
-                return res.status(404).json({ message: 'Furniture not found' });
-            }
-
-            // Проверка дали текущият потребител е собственик на мебелта
-            if (furniture.userId.toString() !== userId.toString()) {
-                return res.status(403).json({ message: 'You are not authorized to edit this furniture' });
-            }
-
-            // Обновяване на полетата на мебелта
-            furniture.category = category || furniture.category;
-            furniture.condition = condition || furniture.condition;
-            furniture.delivery = delivery || furniture.delivery;
-            furniture.location = location || furniture.location;
-            furniture.phone = phone || furniture.phone;
-            furniture.imageUrl = imageUrl || furniture.imageUrl;
-            furniture.summary = summary || furniture.summary;
-
-            // Записване на промените в базата данни
-            return furniture.save();
-        })
-        .then(updatedFurniture => {
-            res.status(200).json(updatedFurniture);  // Връщане на обновената мебел
-        })
-        .catch(next);  // Ако има грешка, тя се предава към middleware за грешки
+    furnitureModel.findOneAndUpdate(
+        { _id: furnitureId, userId },  // Намираме мебелта по ID и проверяваме дали тя принадлежи на текущия потребител
+        {
+            category,
+            condition,
+            delivery,
+            location,
+            phone,
+            imageUrl,
+            summary
+        },
+        { new: true }  // Връща обновената мебел след обновяване
+    )
+    .then(updatedFurniture => {
+        if (updatedFurniture) {
+            res.status(200).json(updatedFurniture);  // Връщаме обновената мебел
+        } else {
+            res.status(401).json({ message: 'You are not authorized to update this furniture' });  // Ако не можем да намерим мебелта или тя не принадлежи на потребителя
+        }
+    })
+    .catch(next);  // Ако има грешка, тя се предава към middleware за грешки
 }
+
 
 
 

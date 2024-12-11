@@ -79,8 +79,16 @@ export class RegisterComponent {
       passGroup: { password, rePassword } = {},
     } = this.form.value;
 
+
+    console.log('Username:', username);
+  console.log('Email:', email);
+  console.log('Telephone:', tel);
+  console.log('Password:', password);
+  console.log('Re-Password:', rePassword);
     this.userService
+    
       .register(username!, email!, tel!, password!, rePassword!)
+     
       .subscribe(() => {
         this.router.navigate(['/home']);
       });

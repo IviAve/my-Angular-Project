@@ -15,7 +15,7 @@ export interface Furniture {
 
   userId: User;  // Пълният обект на потребителя, който добави мебелта
   owner: string;    // Пълният обект на потребителя, който е собственик на мебелта
-  created_at: string;
+  createdAt: string;
   updatedAt: string;
   __v: number;
 }

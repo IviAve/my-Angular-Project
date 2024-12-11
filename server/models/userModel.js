@@ -7,6 +7,7 @@ const { ObjectId } = mongoose.Schema.Types;
 const userSchema = new mongoose.Schema({
     tel: {
         type: String,
+        
     },
     email: {
         type: String,
@@ -40,7 +41,7 @@ const userSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Furniture"
     }],
-    // posts: [{
+    // comments: [{
     //     type: ObjectId,
     //     ref: "Post"
     // }]
