@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
-const postSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     text: {
         type: String,
         required: true
@@ -20,4 +20,4 @@ const postSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Comment', commentSchema);

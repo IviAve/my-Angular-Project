@@ -53,14 +53,10 @@ const furnitureSchema = new mongoose.Schema({
        ref: "User"
       },
 
-      
-       
-    
-
-  // comment: [{
-    //         type: ObjectId,
-    //         ref: "Comments"
-    //     }],
+  comment: [{
+            type: ObjectId,
+            ref: "Comments"
+        }],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Furniture', furnitureSchema);

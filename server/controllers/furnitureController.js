@@ -1,79 +1,29 @@
 const { furnitureModel } = require('../models');
 const {userModel} = require('../models');
-//const { newPost } = require('./postController')
+const { newComment } = require('./commentController')
 
-// function getFurnitures(req, res, next) {
-//     furnitureModel.find()
-//         .populate('userId')
-//         .then(furnitures => res.json(furnitures))
-//         .catch(next);
-// }
-
-// // function getFurniture(req, res, next) {
-// //     const { furnitureId } = req.params;
-
-// //     furnitureModel.findById(furnitureId)
-// //         .populate({
-// //            // path : 'comments',
-// //             populate : {
-// //               path : 'userId'
-// //             }
-// //           })
-// //         .then(furniture => res.json(furniture))
-// //         .catch(next);
-// // }
 
 
 // function getFurniture(req, res, next) {
 //     const { furnitureId } = req.params;
-//     console.log('Furniture ID:', furnitureId); // Лог за ID-то
 
 //     furnitureModel.findById(furnitureId)
 //         .populate({
-           
-//               path : 'userId',
-              
-            
+//            // path : 'comments',
+//             populate : {
+//               path : 'userId'
+//             }
 //           })
 //         .then(furniture => res.json(furniture))
 //         .catch(next);
 // }
 
-// function createFurniture(req, res, next) {
-//     const { category, condition, delivery, location, phone, imageUrl, summary } = req.body;
-//     const { _id: userId } = req.user;
 
-//     furnitureModel.create({
-//         category,
-//         condition,
-//         delivery,
-//         location,
-//         phone,
-//         imageUrl,
-//         summary,
-//         userId,
-        
-//         subscribers: [userId]
-//     })
-//     // .then(furniture => {
-//     //     // Създаване на първоначален пост за новата тема
-//     //     newPost(comment, userId, furniture._id)
-//     //         .then(([_, updatedFurniture]) => res.status(200).json(updatedFurniture))
-//     // })
-
-//     .then(furniture => {
-        
-//         res.status(201).json(furniture); // Връщаме новосъздадената мебел
-//     })
-//     .catch(next); 
-    
-// }
-
-
+//
 
 // new controler from gpt
 
-//const { furnitureModel, userModel } = require('../models');  // Импортираме моделите
+
 
 // Функция за създаване на мебел
 function createFurniture(req, res, next) {
@@ -114,12 +64,38 @@ function createFurniture(req, res, next) {
 }
 
 // Функция за получаване на всички мебели
+// function getFurnitures(req, res, next) {
+//     furnitureModel.find()
+//         .populate('userId')  // Попълваме данните за потребителя
+//         .then(furnitures => res.json(furnitures))
+//         .catch(next);
+// }
+
+
+// test for last three on homepage
 function getFurnitures(req, res, next) {
+    const limit = Number(req.query.limit) || 0;
+  
     furnitureModel.find()
-        .populate('userId')  // Попълваме данните за потребителя
-        .then(furnitures => res.json(furnitures))
-        .catch(next);
-}
+    .populate('userId')
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .then(furnitures => {
+        if (furnitures.length === 0) {
+          return res.status(404).json({ message: "No furniture items found." });
+        }
+        res.status(200).json(furnitures);
+      })
+      .catch(next);
+  }
+  
+
+
+
+
+
+
+
 
 // Функция за получаване на конкретна мебел
 function getFurniture(req, res, next) {
@@ -127,7 +103,8 @@ function getFurniture(req, res, next) {
     //console.log('Furniture from server ID:', furnitureId); // Лог за ID-то
 
     furnitureModel.findById(furnitureId)
-        .populate('userId')  // Попълваме данните за потребителя
+        .populate('userId')
+        .populate('comments')  // Попълваме коментарите  // Попълваме данните за потребителя
         .then(furniture => {
             if(!furniture){
                 return res.status(404).json({ message: 'Furniture not found' });
@@ -168,19 +145,25 @@ function editFurniture(req, res, next) {
     .catch(next);  // Ако има грешка, тя се предава към middleware за грешки
 }
 
-module.exports = {
-    createFurniture,
-    getFurnitures,
-    getFurniture,
-    editFurniture
-};
 
+// function getLastThreeItems(req,res,next){
+// const limit = Number(req.query.limit) || 3;
 
+// furnitureModel.find()
+// .sort({createdAt: -1 })
+// .limit(limit)
+// .then(furnitures => {
+//     if (furnitures.length === 0) {
+//         // Ако няма намерени мебели, върни 404
+//         return res.status(404).json({ message: "No furniture items found." });
+//     }
 
+//     // Ако са намерени мебели, върни 200 с резултатите
+//     res.status(200).json(furnitures);
+// })
+// .catch(next);
 
-
-
-
+// }
 
 
 
@@ -222,4 +205,5 @@ module.exports = {
     subscribe,
     editFurniture,
     deleteFurniture,
+    
 }

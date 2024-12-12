@@ -1,9 +1,9 @@
 const authController = require('./auth');
 const furnitureController = require('./furnitureController');
-//const postController = require('./postController');
+const commentController = require('./commentController');
 
 module.exports = {
     authController,
     furnitureController,
-    //postController,
+    commentController,
 }

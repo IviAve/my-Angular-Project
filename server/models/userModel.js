@@ -41,10 +41,15 @@ const userSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Furniture"
     }],
-    // comments: [{
-    //     type: ObjectId,
-    //     ref: "Post"
-    // }]
+
+    transports: [{
+        type: ObjectId,
+        ref: "Transport"
+    }],
+    comments: [{
+        type: ObjectId,
+        ref: "Comment"
+    }]
 }, { timestamps: true });
 
 userSchema.methods = {

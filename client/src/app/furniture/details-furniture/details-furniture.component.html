@@ -29,6 +29,48 @@
   </p>
 </div>
 
+<!-- comment  -->
+
+<!-- @for (comment of furniture.comments; track $index) {
+  <div class="comment">
+    <header class="header">
+      <p>
+         <span>{{ comment.userId.username }}</span> posted on 
+         <time>{{ comment.created_at }}</time> 
+      </p>
+    </header>
+    <div class="comment-main">
+      <div class="userdetails">
+        <img src="./profile.png" alt="avatar" />
+      </div>
+      <div class="post-content">
+        <p>
+           {{ comment.text }} 
+        </p>
+      </div>
+    </div>
+    <div class="footer">
+      
+    </div>
+  </div>
+} @if(isLoggedIn){
+  <div class="answer-comment">
+    <p>
+      <span>{{ username }}</span> comment:
+    </p>
+    <div class="answer">
+      <form>
+        <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
+        <button>Post</button>
+      </form>
+    </div>
+  </div>
+  } -->
+
+
+
+
+
        <!-- Edit/Delete buttons ( Only for creator of this game )  -->
        @if (isLoggedIn && isOwner) {
        <div class="buttons">

@@ -10,6 +10,7 @@ import { DOMAINS } from '../../constants';
 import { ProfileDetails } from '../../types/user';
 import { UserService } from '../user.service';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
     username: '',
     email: '',
     tel: '',
+  
   };
 
   form = new FormGroup({

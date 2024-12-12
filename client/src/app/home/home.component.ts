@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../user/user.service';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { CatalogFurnitureComponent } from '../furniture/catalog-furniture/catalog-furniture.component';
 import { Furniture } from '../types/furniture';
 import { ApiService } from '../api.service';
+import { ElapsedTimePipe } from '../shared/pipes/elapsed-time.pipe';
 
 
 
@@ -13,11 +14,11 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, LoaderComponent,CatalogFurnitureComponent ],
+  imports: [RouterLink, LoaderComponent,CatalogFurnitureComponent ,ElapsedTimePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent  implements OnInit{
   // get isLoggedIn(): boolean {
   //   return this.userService.isLogged;
   // }
@@ -28,8 +29,15 @@ export class HomeComponent {
 
   
 
-  ngOnInit() {
-    this.apiService.getFurnitures().subscribe((furnitures) => {
+  // ngOnInit() {
+  //   this.apiService.getFurnitures().subscribe((furnitures) => {
+  //     this.furnitures = furnitures;
+  //     this.isLoading = false;
+  //   });
+  // }
+
+  ngOnInit() : void {
+    this.apiService.getLastThreeFurnitures(3).subscribe((furnitures) => {
       this.furnitures = furnitures;
       this.isLoading = false;
     });

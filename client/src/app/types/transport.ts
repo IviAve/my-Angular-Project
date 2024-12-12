@@ -1,7 +1,6 @@
-
 import { User } from './user';
 
-export interface Furniture {
+export interface Transport {
   subscribers: string[];
   
   _id: string;

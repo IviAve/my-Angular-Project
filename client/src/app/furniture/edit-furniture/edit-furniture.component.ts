@@ -80,7 +80,8 @@ export class EditFurnitureComponent implements OnInit {
       location,
       phone,
       imageUrl,
-      summary
+      summary,
+      comments:[],
     };
   
     // Актуализираме мебелта чрез API
