@@ -12,14 +12,7 @@ import { Transport } from './types/transport';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  // getLastThreeFurnitures(limit?: number){
-  //   // todo;
-  //   let url = `/api/furnitures`;
-  //   if(limit){
-  //     url += `?limit=${limit}`;
-  //   }
-    
-  // }
+  
 
   getLastThreeFurnitures(limit?: number ): Observable<Furniture[]> {
     let url = `/api/furnitures`;
@@ -71,28 +64,31 @@ export class ApiService {
     }
 
 
-    // transport
 
-    // getTransports() {
-    //   return this.http.get<Furniture[]>(`/api/transports`);
-    // }
+
+
+    // TRANSPORT SERVICE
+
+    getTransports() {
+      return this.http.get<Transport[]>(`/api/transports`);
+    }
   
-    // getSingleTransport(furnitureId: string) {
-    //   return this.http.get<Furniture>(`/api/transports/${transportId}`);
-    // }
+    getSingleTransport(transportId: string) {
+      return this.http.get<Transport>(`/api/transports/${transportId}`);
+    }
   
-    // createTransport(category: string, condition: string, delivery: string, location: string, phone: string, imageUrl: string, summary: string) {
-    //   const payload = { category, condition, delivery, location, phone, imageUrl, summary };
-    //   return this.http.post<Transport>(`/api/transportes`, payload);
-    // }
+    createTransport(name: string, type: string, capacity: string, price: number, location: string, phone: string, imageUrl: string, summary: string) {
+      const payload = { name, type, capacity, price, location, phone, imageUrl, summary };
+      return this.http.post<Transport>(`/api/transports`, payload);
+    }
   
     
-    // updateTransport(furnitureId: string, updatedFurniture: Transport): Observable<Transport> {
+    updateTransport(transportId: string, updatedTransport: Transport): Observable<Transport> {
       
-    //   console.log(`Requesting transport: /api/transports/${transportId}`);
+      console.log(`Requesting transport: /api/transports/${transportId}`);
   
-    //   return this.http.put<Furniture>(`/api/transports/${transportId}`, updatedTransport);
-    // }
+      return this.http.put<Transport>(`/api/transports/${transportId}`, updatedTransport);
+    }
     
     
   
@@ -100,9 +96,9 @@ export class ApiService {
   
     //   //delete -> http.delete transport ID
   
-    //   deleteTransport(furnitureId: string) {
-    //     return this.http.delete(`/api/transports/${transportId}`);
-    //   }
+      deleteTransport(transportId: string) {
+        return this.http.delete(`/api/transports/${transportId}`);
+      }
 
     
    

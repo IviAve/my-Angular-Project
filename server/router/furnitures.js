@@ -24,6 +24,6 @@ router.delete('/:furnitureId', auth(), furnitureController.deleteFurniture);
 // router.delete('/:furnitureId/posts/:postId', auth(), postController.deletePost);
 
 
- //router.get('/my-trips/:id/reservations', auth(), furnitureController.getReservations);
+ 
 
 module.exports = router

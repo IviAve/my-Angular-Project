@@ -11,10 +11,10 @@ import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { CatalogFurnitureComponent } from './furniture/catalog-furniture/catalog-furniture.component';
 import { AddFurnitureComponent } from './furniture/add-furniture/add-furniture.component';
 import { AboutUsComponent } from './about-us/about-us/about-us.component';
-//import { AddTransportServicesComponent } from './transport-services/add-transport-services/add-transport-services.component';
-import { CatalogTransportServicesComponent } from './transport-services/catalog-transport-services/catalog-transport-services.component';
-import { DetailsTransportServicesComponent } from './transport-services/details-transport-services/details-transport-services.component';
-import { EditTransportServicesComponent } from './transport-services/edit-transport-services/edit-transport-services.component';
+import { AddTransportComponent } from './transport/add-transport/add-transport.component';
+import { CatalogTransportComponent } from './transport/catalog-transport/catalog-transport.component';
+import { DetailsTransportComponent } from './transport/details-transport/details-transport.component';
+import { EditTransportComponent } from './transport/edit-transport/edit-transport.component';
 import { EditFurnitureComponent } from './furniture/edit-furniture/edit-furniture.component';
 
 export const routes: Routes = [
@@ -56,10 +56,40 @@ export const routes: Routes = [
 
 
   // End - furniture routing
-  // {path:'add-transport-services', component: AddTransportServicesComponent},
-  {path:'details-transport-services', component: DetailsTransportServicesComponent},
-  {path:'catalog-transport-services', component: CatalogTransportServicesComponent},
-  {path:'edit-transport-services', component: EditTransportServicesComponent},
+
+
+  // start transport routing
+  
+  {
+    path: 'transports',
+    children: [
+      { path: '', component: MainComponent },
+      {
+        path: ':transportId',
+        component: DetailsTransportComponent,
+        // canActivate: [AuthGuard],
+      },
+    ],
+  },
+ 
+
+  {path: 'catalog-transport',component: CatalogTransportComponent},
+  
+  {
+    path: 'add-transport',
+    loadComponent: () =>
+      import('./transport/add-transport/add-transport.component').then(
+        (c) => c.AddTransportComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  
+  { path:'edit-transport/:transportId', component: EditTransportComponent },
+
+  //  {path:'add-transport', component: AddTransportServicesComponent},
+  // {path:'details-transport', component: DetailsTransportServicesComponent},
+  // {path:'catalog-transport', component: CatalogTransportServicesComponent},
+  // {path:'edit-transport-services', component: EditTransportServicesComponent},
 
   { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },

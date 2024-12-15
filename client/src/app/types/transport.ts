@@ -2,13 +2,13 @@ import { User } from './user';
 
 export interface Transport {
   subscribers: string[];
-  
   _id: string;
-  category: string; // Required, at least 5 characters
-  condition: string; // Required, at least 5 characters
-  delivery: string; // Required, at least 5 characters
-  location: string; // Required, at least 5 characters
-  phone: string; // Required, must contain only digits and be at least 5 digits long
+  name: string; // Required, at least 3 characters
+  type: string; // Required, at least 3 characters
+  capacity: string; // Required, at least 3 characters
+  price: number;// Required, at least 1 characters
+  location: string; // Required, at least 3 characters
+  phone: string; // Required, must contain only digits and be at least 9 digits long
   imageUrl: string; // Required, must be a valid image URL format
   summary: string; 
   comments: Comment[];

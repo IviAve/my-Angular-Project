@@ -50,7 +50,7 @@
     <h1><a class="home" routerLink="/home">Furniture</a></h1>
     
     <nav>
-      <a routerLink="/catalog-transport-services">transport-services catalog</a>
+      <a routerLink="/catalog-transport">transport-services catalog</a>
       <a routerLink="/catalog-furniture">Furniture catalog</a>
       @if (isLoggedIn) {
         <a class="profile" routerLink="/profile">{{ username }}'s Profile</a>
@@ -58,7 +58,7 @@
 
         <div id="user">
           <a routerLink="/add-furniture">Add free furniture</a>
-          <a routerLink="/add-transport-services">Add transport-services</a>
+          <a routerLink="/add-transport">Add transport-services</a>
           <a class="about" routerLink="/about-us">About Us</a>
         </div>
       } @else {

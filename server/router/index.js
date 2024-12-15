@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const users = require('./users');
 const furnitures = require('./furnitures');
+const transports = require('./transports');
 const comments = require('./comments');
 //const likes = require('./likes');
 const test = require('./test');
@@ -12,6 +13,7 @@ router.post('/logout', authController.logout);
 
 router.use('/users', users);
 router.use('/furnitures', furnitures);
+router.use('/transports', transports);
 router.use('/comments', comments);
 //router.use('/likes', likes);
 router.use('/test', test);

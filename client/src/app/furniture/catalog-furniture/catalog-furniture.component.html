@@ -1,16 +1,16 @@
 @if (isLoading) {
   <app-loader />
   }@else {
-
+    <h1>All furniture</h1>
 <section id="catalog-furniture">
-  <h1>All furniture</h1>
+ 
   @if (furnitures.length > 0 ) {
   @for (furniture of furnitures; track $index) {
   
   <!-- Display div: with information about every game (if any) -->
   <div class="allFurnits">
       <div class="allFurnits-info">
-          <img src={{furniture.imageUrl}}>
+          <img src={{furniture.imageUrl}}  alt="{{furniture.category}}">
           <h6><a [routerLink]="furniture._id" class="normal"></a></h6>
           <h2>{{furniture.category}}</h2>
           <h2>{{furniture.location}}</h2>

@@ -4,21 +4,26 @@ const { ObjectId } = mongoose.Schema.Types;
 
 
 
-const furnitureSchema = new mongoose.Schema({
-    category: {
+const transportSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required: [true, 'Category is required.'],
-        minlength: [4, 'Category must be at least 4 characters long.'],
+        required: [true, 'Name is required.'],
+        minlength: [3, 'Name must be at least 3 characters long.'],
       },
-      condition: {
+      type: {
         type: String,
-        required: [true, 'Condition is required.'],
-        minlength: [4, 'Condition must be at least 4 characters long.'],
+        required: [true, 'Type is required.'],
+        minlength: [3, 'Type must be at least 3 characters long.'],
       },
-      delivery: {
+      capacity: {
         type: String,
-        required: [true, 'Delivery information is required.'],
-        minlength: [5, 'Delivery information must be at least 5 characters long.'],
+        required: [true, 'Capacity is required.'],
+        minlength: [3, 'Capacity must be at least 3 characters long.'],
+      },
+      price: {
+        type: Number, // С главна буква
+        required: [true, 'Price is required.'], // Съобщение за липсваща стойност
+        min: [1, 'Price must be at least 1.'] // Съобщение за минимална стойност
       },
       location: {
         type: String,
@@ -59,4 +64,4 @@ const furnitureSchema = new mongoose.Schema({
         }],
 }, { timestamps: true });
 
-module.exports = mongoose.model('Furniture', furnitureSchema);
+module.exports = mongoose.model('Transport', transportSchema);
