@@ -11,7 +11,7 @@ export interface Transport {
   phone: string; // Required, must contain only digits and be at least 9 digits long
   imageUrl: string; // Required, must be a valid image URL format
   summary: string; 
-  comments: Comment[];
+  //comments: Comment[];
   userId: User;  // Пълният обект на потребителя, който добави мебелта
   owner: string;    // Пълният обект на потребителя, който е собственик на мебелта
   createdAt: string;

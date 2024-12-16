@@ -19,16 +19,12 @@
         <!-- Display the created date -->
           <!-- Display the created and updated dates -->
 
-  <p>
-    <strong>Created:</strong> 
-    <time>{{ furniture.createdAt }}</time>
-  </p>
-  <p>
-    <strong>Updated:</strong>
-    <time>{{ furniture.updatedAt }}</time>
-  </p>
+  <p><strong>Created:</strong> <time>{{ furniture.createdAt }}</time></p>
+  <p><strong>Updated:</strong> <time>{{ furniture.updatedAt }}</time></p>
 </div>
-
+<p class="user"><b>Publish by:</b> <span> {{ furniture.userId.username }}</span></p>
+ <p class="liked"><b>Likes:</b> <span> {{ furniture.subscribers.length || 0 }}</span></p>
+</div>
 <!-- comment  -->
 
 <!-- @for (comment of furniture.comments; track $index) {
@@ -78,8 +74,12 @@
         
         <a  class="button" (click)="delete()">Delete</a>
     </div>
+  } @else {
+    @if (isLoggedIn && !isLiked) {
+      <button type="button" class="button" (click)="onLike($event)">Like</button>
+    }
   }
-      </div>
+      
     </div>
   </section>
   

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {Comment } from './types/comments';
 import { Furniture } from './types/furniture';
 import { Transport } from './types/transport';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,23 +15,27 @@ export class ApiService {
 
   
 
-  getLastThreeFurnitures(limit?: number ): Observable<Furniture[]> {
-    let url = `/api/furnitures`;
+  // getLastThreeFurnitures(limit?: number ): Observable<Furniture[]> {
+  //   let url = `/api/furnitures`;
+  //   if (limit) {
+  //     url += `?limit=${limit}`; // Append the limit query parameter
+  //   }
+
+  //   return this.http.get<Furniture[]>(url); // Return the observable of Furniture[]
+  // }
+
+
+  getLastThreeFurnitures(limit?: number): Observable<Furniture[]> {
+    let url = '/api/furnitures';
     if (limit) {
       url += `?limit=${limit}`; // Append the limit query parameter
     }
-
-    return this.http.get<Furniture[]>(url); // Return the observable of Furniture[]
-  }
-
-
-  getComments(limit?: number) {
-    let url = `/api/comments`;
-    if (limit) {
-      url += `?limit=${limit}`;
-    }
-
-    return this.http.get<Comment[]>(url);
+    return this.http.get<Furniture[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching last three furnitures', error);
+        throw error;
+      })
+    );
   }
   getFurnitures() {
     return this.http.get<Furniture[]>(`/api/furnitures`);
@@ -92,7 +97,14 @@ export class ApiService {
     
     
   
-  
+    getComments(transportId: string): Observable<any[]> {
+      return this.http.get<any[]>(`/api/transport/${transportId}/comments`);
+    }
+    
+    addComment(transportId: string, comment: string): Observable<any> {
+      return this.http.post(`/api/transport/${transportId}/comments`, { comment });
+    }
+    
   
     //   //delete -> http.delete transport ID
   
@@ -102,6 +114,9 @@ export class ApiService {
 
     
    
+      likeFurniture(furnitureId: string) {
+        return this.http.put(`/api/furnitures/${furnitureId}/subscribe`, {});
+      }
   }
 
 

@@ -1,7 +1,7 @@
 export interface User {
   furnitures: string[];
   transports: string[];
-  comments: string[];
+  
   _id: string;
   tel: string;
   email: string;

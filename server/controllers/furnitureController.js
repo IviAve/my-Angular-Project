@@ -1,6 +1,6 @@
 const { furnitureModel } = require('../models');
 const {userModel} = require('../models');
-const { newComment } = require('./commentController')
+
 
 
 
@@ -40,7 +40,8 @@ function createFurniture(req, res, next) {
         imageUrl,
         summary,
         userId,  // Свързваме мебелта с текущия потребител
-        subscribers: [userId]  // Потребителят ще бъде в масива subscribers
+        subscribers: [userId]
+          // Потребителят ще бъде в масива subscribers
     })
     .then(furniture => {
         // След създаването на мебелта, добавяме новосъздадената мебел в масива furnitures на потребителя
@@ -74,28 +75,22 @@ function createFurniture(req, res, next) {
 
 // test for last three on homepage
 function getFurnitures(req, res, next) {
-    const limit = Number(req.query.limit) || 0;
-  
+    const limit = Number(req.query.limit) || 10;
+    
     furnitureModel.find()
-    .populate('userId')
+      .populate('userId')
       .sort({ createdAt: -1 })
       .limit(limit)
       .then(furnitures => {
+        // Ако няма мебели, връщаме празен масив
         if (furnitures.length === 0) {
-          return res.status(404).json({ message: "No furniture items found." });
+          return res.status(200).json({ message: "No furniture items found.", furnitures: [] });
         }
         res.status(200).json(furnitures);
       })
       .catch(next);
   }
   
-
-
-
-
-
-
-
 
 // Функция за получаване на конкретна мебел
 function getFurniture(req, res, next) {
@@ -167,24 +162,51 @@ function editFurniture(req, res, next) {
 
 
 
-function deleteFurniture(req, res, next) {
-        const { furnitureId } = req.params;
-        const { _id: userId } = req.user;
+// function deleteFurniture(req, res, next) {
+//         const { furnitureId } = req.params;
+//         const { _id: userId } = req.user;
     
-        Promise.all([
-            furnitureModel.findOneAndDelete({ _id: furnitureId, userId }),
-            userModel.findOneAndUpdate({ _id: userId }, { $pull: { furnitures: furnitureId } }),
-            furnitureModel.findOneAndUpdate({ _id: furnitureId }, { $pull: { furnitures: furnitureId } }),
-        ])
-            .then(([deletedOne, _, __]) => {
-                if (deletedOne) {
-                    res.status(200).json(deletedOne)
-                } else {
-                    res.status(401).json({ message: `Not allowed!` });
-                }
-            })
-            .catch(next);
-    }
+//         Promise.all([
+//             furnitureModel.findOneAndDelete({ _id: furnitureId, userId }),
+//             userModel.findOneAndUpdate({ _id: userId }, { $pull: { furnitures: furnitureId } }),
+//             //furnitureModel.findOneAndUpdate({ _id: furnitureId }, { $pull: { furnitures: furnitureId } }),
+//             furnitureModel.updateOne({ _id: furnitureId }, { $pull: { subscribers: userId } })
+//         ])
+//             .then(([deletedOne, _, __]) => {
+//                 if (deletedOne) {
+//                     res.status(200).json(deletedOne)
+//                 } else {
+//                     res.status(401).json({ message: `Not allowed!` });
+//                 }
+//             })
+//             .catch(next);
+//     }
+
+
+function deleteFurniture(req, res, next) {
+    const { furnitureId } = req.params;
+    const { _id: userId } = req.user;
+
+    // Първо изтриваме мебелта
+    furnitureModel.findOneAndDelete({ _id: furnitureId, userId })
+        .then(deletedFurniture => {
+            if (!deletedFurniture) {
+                return res.status(404).json({ message: "Furniture not found or not authorized to delete" });
+            }
+
+            // Премахваме мебелта от списъка `furnitures` на потребителя
+            return userModel.findOneAndUpdate({ _id: userId }, { $pull: { furnitures: furnitureId } });
+        })
+        .then(() => {
+            // Премахваме потребителя от масива `subscribers` на мебелта
+            return furnitureModel.updateOne({ _id: furnitureId }, { $pull: { subscribers: userId } });
+        })
+        .then(() => {
+            // Успешно изтриване и актуализация
+            res.status(200).json({ message: "Furniture deleted successfully" });
+        })
+        .catch(next);  // Обработване на грешки
+}
 
 
 

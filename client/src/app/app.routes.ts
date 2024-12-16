@@ -60,18 +60,23 @@ export const routes: Routes = [
 
   // start transport routing
   
+  // {
+  //   path: 'transports',
+  //   children: [
+  //     { path: '', component: MainComponent },
+  //     {
+  //       path: ':transportId',
+  //       component: DetailsTransportComponent,
+  //       // canActivate: [AuthGuard],
+  //     },
+  //   ],
+  // },
   {
-    path: 'transports',
-    children: [
-      { path: '', component: MainComponent },
-      {
-        path: ':transportId',
-        component: DetailsTransportComponent,
-        // canActivate: [AuthGuard],
-      },
-    ],
+    path: 'transports/:transportId',
+    component: DetailsTransportComponent,
+    // canActivate: [AuthGuard], // Добави, ако е необходимо
   },
- 
+  
 
   {path: 'catalog-transport',component: CatalogTransportComponent},
   
@@ -86,6 +91,9 @@ export const routes: Routes = [
   
   { path:'edit-transport/:transportId', component: EditTransportComponent },
 
+
+  
+  
   //  {path:'add-transport', component: AddTransportServicesComponent},
   // {path:'details-transport', component: DetailsTransportServicesComponent},
   // {path:'catalog-transport', component: CatalogTransportServicesComponent},

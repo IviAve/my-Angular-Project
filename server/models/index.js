@@ -1,7 +1,7 @@
 const userModel = require('./userModel');
 const tokenBlacklistModel = require('./tokenBlacklistModel');
 const furnitureModel = require('./furnitureModel');
-const commentModel = require('./commentModel');
+const comments = require ('./comments')
 const transportModel = require('./transportModel');
 
 module.exports = {
@@ -9,5 +9,6 @@ module.exports = {
     tokenBlacklistModel,
     furnitureModel,
     transportModel,
-    commentModel,
+    comments,
+    
 }

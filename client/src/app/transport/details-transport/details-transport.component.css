@@ -155,3 +155,7 @@
     color: white;
     cursor: pointer;
 }
+
+p {
+    margin: 5px 0;  /* Разстояние между редовете */
+  }

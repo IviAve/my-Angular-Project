@@ -73,7 +73,7 @@ export class EditTransportComponent implements OnInit {
       phone,
       imageUrl,
       summary,
-      comments:[],
+      //comments:[],
     };
   
     // Актуализираме мебелта чрез API

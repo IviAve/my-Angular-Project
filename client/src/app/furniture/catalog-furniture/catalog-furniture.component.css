@@ -1,6 +1,6 @@
 /* Стил за съобщението "No free furniture yet" */
 .no-articles {
-  color: white;
+  color: rgb(24, 10, 10);
   text-align: center;
   font-weight: 700;
   font-size: 60px;
@@ -131,4 +131,22 @@
 .details-button:hover {
   background-color: #1a1c4d;
   cursor: pointer;
+}
+
+.user b, .liked b {
+  color: rgb(255, 153, 0); /* Bright blue to emphasize the label */
+  font-weight: bold;
+}
+
+.user span, .liked span {
+  color: #555; /* Slightly lighter gray for secondary text */
+}
+
+.user {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.liked {
+  margin-top: 5px;
 }

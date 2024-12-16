@@ -36,6 +36,9 @@ export class DetailsFurnitureComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
+  get isLiked(): boolean {
+    return this.furniture.subscribers.some(el => el == this.userService.user?._id);
+  }
 
 
 ngOnInit(): void {
@@ -80,6 +83,12 @@ ngOnInit(): void {
     });
   }
   
-  
+  onLike(event: Event) {
+    event.preventDefault();
+    const id = this.route.snapshot.params['furnitureId'];
+    this.apiService.likeFurniture(id).subscribe(() => {
+      this.router.navigate(['/catalog-furniture']);
+    });
+  }
   
   }

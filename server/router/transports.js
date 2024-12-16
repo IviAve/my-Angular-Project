@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../utils');
-const { transportController, commentController } = require('../controllers');
+const { transportController } = require('../controllers');
 
 // middleware that is specific to this router
 
@@ -10,13 +10,20 @@ router.post('/', auth(), transportController.createTransport);
 
 router.get('/:transportId', transportController.getTransport);
 
-router.post('/:transportId/comments', auth(), commentController.createComment);
+
 
 router.put('/:transportId/subscribe', auth(), transportController.subscribe);
 
 router.put('/:transportId', auth(), transportController.editTransport);
 router.delete('/:transportId', auth(), transportController.deleteTransport);
 
+// Добавяне на коментар към транспорт
+router.post('/transports/:transportId/comments', auth(), transportController.addCommentToTransport);
+// Пример за сървърен маршрут за получаване на коментари
+router.get('/transports/:transportId/comments', auth(), transportController.getComments);
+
+// Изтриване на коментар от транспорт
+router.delete('/transports/:transportId/comments/:commentId', auth(), transportController.deleteCommentFromTransport);
 
 //router.get('/last-three',furnitureController.getLastThreeItems)
 

@@ -46,10 +46,10 @@ const userSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Transport"
     }],
-    comments: [{
-        type: ObjectId,
-        ref: "Comment"
-    }]
+    // comments: [{
+    //     type: ObjectId,
+    //     ref: "Comment"
+    // }]
 }, { timestamps: true });
 
 userSchema.methods = {

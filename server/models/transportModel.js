@@ -58,7 +58,7 @@ const transportSchema = new mongoose.Schema({
        ref: "User"
       },
 
-  comment: [{
+  comments: [{
             type: ObjectId,
             ref: "Comments"
         }],

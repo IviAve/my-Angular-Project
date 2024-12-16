@@ -1,6 +1,4 @@
-@if (isLoading) {
-  <app-loader />
-  }@else {
+
     <h1>All furniture</h1>
 <section id="catalog-furniture">
  
@@ -15,8 +13,9 @@
           <h2>{{furniture.category}}</h2>
           <h2>{{furniture.location}}</h2>
           <h2>{{furniture.condition}}</h2>
-
+          <p class="liked"><b>Likes:</b> <span> {{ furniture.subscribers.length || 0 }}</span></p>
           <!-- <a [routerLink]="furniture._id" class="details-button">Details</a> -->
+          
           <a [routerLink]="['/furnitures', furniture._id]" class="details-button">Details</a>
 
 
@@ -30,7 +29,7 @@
 }
   <!-- Display paragraph: If there is no games  -->
   @else {
-  <h3 class="no-articles">No free furniture yet</h3>
+  <h3 class="no-articles">No used furniture yet</h3>
   }
 </section>
-  }
+  

@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-catalog-furniture',
   standalone: true,
-  imports: [LoaderComponent, RouterLink, SlicePipe, DatePipe],
+  imports: [LoaderComponent, RouterLink, SlicePipe, DatePipe,ElapsedTimePipe],
   templateUrl: './catalog-furniture.component.html',
   styleUrl: './catalog-furniture.component.css',
 })
