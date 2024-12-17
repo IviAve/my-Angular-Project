@@ -9,14 +9,14 @@
   <div class="allFurnits">
       <div class="allFurnits-info">
           <img src={{furniture.imageUrl}}  alt="{{furniture.category}}">
-          <h6><a [routerLink]="furniture._id" class="normal"></a></h6>
+          <!-- <h6><a [routerLink]="furniture._id" class="normal"></a></h6> -->
           <h2>{{furniture.category}}</h2>
           <h2>{{furniture.location}}</h2>
           <h2>{{furniture.condition}}</h2>
           <p class="liked"><b>Likes:</b> <span> {{ furniture.subscribers.length || 0 }}</span></p>
           <!-- <a [routerLink]="furniture._id" class="details-button">Details</a> -->
           
-          <a [routerLink]="['/furnitures', furniture._id]" class="details-button">Details</a>
+          <a routerLink='/furnitures/{{furniture._id}}' class="details-button">Details</a>
 
 
       </div>

@@ -50,8 +50,11 @@
                 <a routerLink="/edit-transport/{{transport._id}}" class="button">Edit</a>
                 <a class="button" (click)="delete()">Delete</a>
             </div>
+        }  @else {
+            @if (isLoggedIn && !isLiked) {
+              <button type="button" class="button" (click)="onLike($event)">Like</button>
+            }
         }
-
         <!-- Add Comment Section (only for logged-in users who are not the owner) -->
         <!-- @if (isLoggedIn && !isOwner) {
             <article class="create-comment">
@@ -68,5 +71,8 @@
                 </form>
             </article>
         } -->
+
+
+
     </div>
 </section>

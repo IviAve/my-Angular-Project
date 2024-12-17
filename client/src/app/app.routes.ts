@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './error/error.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
-import { MainComponent } from './main/main.component';
+//import { MainComponent } from './main/main.component';
 import { DetailsFurnitureComponent } from './furniture/details-furniture/details-furniture.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
@@ -16,30 +16,22 @@ import { CatalogTransportComponent } from './transport/catalog-transport/catalog
 import { DetailsTransportComponent } from './transport/details-transport/details-transport.component';
 import { EditTransportComponent } from './transport/edit-transport/edit-transport.component';
 import { EditFurnitureComponent } from './furniture/edit-furniture/edit-furniture.component';
+import { loggedGuard } from './guards/logged.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
 
   //   Start - User routing
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent,canActivate: [loggedGuard] },
+  { path: 'register', component: RegisterComponent,canActivate: [loggedGuard] },
+  { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard]},
   //   End - User routing
 {path: 'about-us', component: AboutUsComponent},
   // Start - furniture routing
-  {
-    path: 'furnitures',
-    children: [
-      { path: '', component: MainComponent },
-      {
-        path: ':furnitureId',
-        component: DetailsFurnitureComponent,
-        // canActivate: [AuthGuard],
-      },
-    ],
-  },
  
+ 
+{path:'furnitures/:furnitureId' , component: DetailsFurnitureComponent},
 
   {path: 'catalog-furniture',component: CatalogFurnitureComponent},
   
@@ -52,7 +44,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   
-  { path:'edit-furniture/:furnitureId', component: EditFurnitureComponent },
+  { path:'edit-furniture/:furnitureId', component: EditFurnitureComponent,canActivate: [AuthGuard], },
 
 
   // End - furniture routing
@@ -60,17 +52,7 @@ export const routes: Routes = [
 
   // start transport routing
   
-  // {
-  //   path: 'transports',
-  //   children: [
-  //     { path: '', component: MainComponent },
-  //     {
-  //       path: ':transportId',
-  //       component: DetailsTransportComponent,
-  //       // canActivate: [AuthGuard],
-  //     },
-  //   ],
-  // },
+  
   {
     path: 'transports/:transportId',
     component: DetailsTransportComponent,
@@ -89,7 +71,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   
-  { path:'edit-transport/:transportId', component: EditTransportComponent },
+  { path:'edit-transport/:transportId', component: EditTransportComponent,canActivate: [AuthGuard], },
 
 
   

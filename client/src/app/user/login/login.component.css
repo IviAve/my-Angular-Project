@@ -144,3 +144,8 @@ p.error {
   border-left-color: red;
   border-color: red;
 }
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin: 1rem 0;
+}

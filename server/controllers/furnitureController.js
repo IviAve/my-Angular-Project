@@ -104,7 +104,11 @@ function getFurniture(req, res, next) {
             if(!furniture){
                 return res.status(404).json({ message: 'Furniture not found' });
             }
-                res.json(furniture);
+                // res.json(furniture);
+
+                res.status(200).json(furniture);  // Статус 200
+            console.log('Furniture found and response sent'); // 
+            res.end();
         })
         .catch(next);
         
