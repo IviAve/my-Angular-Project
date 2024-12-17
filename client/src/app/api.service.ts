@@ -117,6 +117,10 @@ export class ApiService {
       likeFurniture(furnitureId: string) {
         return this.http.put(`/api/furnitures/${furnitureId}/subscribe`, {});
       }
+
+      likeTransport(transportId: string) {
+        return this.http.put(`/api/transports/${transportId}/subscribe`, {});
+      }
   }
 
 

@@ -1,7 +1,7 @@
 const { transportModel } = require('../models');
 const {userModel} = require('../models');
 
-const {comments} = require('../models'); // Импортиране на модела за коментарите
+//const {comments} = require('../models'); // Импортиране на модела за коментарите
 
 // Друг код, който използва тези модели
 
@@ -23,7 +23,7 @@ function createTransport(req, res, next) {
         imageUrl,
         summary,
         userId,  // Свързваме мебелта с текущия потребител
-        subscribers: [userId]  // Потребителят ще бъде в масива subscribers
+        subscribers: []  // Потребителят ще бъде в масива subscribers
     })
     .then(transport => {
         // След създаването на мебелта, добавяме новосъздадената мебел в масива furnitures на потребителя
@@ -154,68 +154,72 @@ function subscribe(req, res, next) {
 }
 
 
-function addCommentToTransport(req, res, next) {
-    const { transportId } = req.params;
-    const { _id: userId } = req.user;  // Извличаме ID на потребителя от request-а
-    const { commentText } = req.body;  // Извличаме текста на коментара от body-то на заявката
 
-    // Създаване на нов коментар
-    const newComment = {
-        text: commentText,
-        userId,  // Свързваме коментара с потребителя
-        transportId,  // Свързваме коментара с конкретния транспорт
-        createdAt: new Date()  // Добавяме времето на създаване на коментара
-    };
 
-    // Добавяме коментара към транспорта
-    transportModel.findByIdAndUpdate(
-        transportId, 
-        { $push: { comments: newComment } },  // Добавяме новия коментар в масива с коментари на транспорта
-        { new: true }
-    )
-    .then(updatedTransport => {
-        if (!updatedTransport) {
-            return res.status(404).json({ message: 'Transport not found' });
-        }
-        res.status(200).json(updatedTransport);  // Връщаме актуализирания транспорт
-    })
-    .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
-}
 
-function deleteCommentFromTransport(req, res, next) {
-    const { transportId, commentId } = req.params;  // Извличаме ID на транспорт и коментар от URL параметрите
-    const { _id: userId } = req.user;  // Извличаме ID на потребителя
 
-    // Намираме и изтриваме коментара
-    transportModel.findByIdAndUpdate(
-        transportId,
-        { $pull: { comments: { _id: commentId, userId } } },  // Изтриваме коментара, ако той принадлежи на потребителя
-        { new: true }
-    )
-    .then(updatedTransport => {
-        if (!updatedTransport) {
-            return res.status(404).json({ message: 'Transport not found or comment not found' });
-        }
-        res.status(200).json(updatedTransport);  // Връщаме актуализирания транспорт
-    })
-    .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
-}
+// function addCommentToTransport(req, res, next) {
+//     const { transportId } = req.params;
+//     const { _id: userId } = req.user;  // Извличаме ID на потребителя от request-а
+//     const { commentText } = req.body;  // Извличаме текста на коментара от body-то на заявката
 
-// Функция за получаване на всички коментари към транспорт
-function getComments(req, res, next) {
-    const { transportId } = req.params;  // Извличаме ID на транспорта от URL параметрите
+//     // Създаване на нов коментар
+//     const newComment = {
+//         text: commentText,
+//         userId,  // Свързваме коментара с потребителя
+//         transportId,  // Свързваме коментара с конкретния транспорт
+//         createdAt: new Date()  // Добавяме времето на създаване на коментара
+//     };
 
-    // Намираме транспорт по ID и попълваме коментарите
-    transportModel.findById(transportId)
-        .populate('comments')  // Попълваме данни за коментарите
-        .then(transport => {
-            if (!transport) {
-                return res.status(404).json({ message: 'Transport not found' });
-            }
-            res.status(200).json(transport.comments);  // Връщаме само коментарите
-        })
-        .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
-}
+//     // Добавяме коментара към транспорта
+//     transportModel.findByIdAndUpdate(
+//         transportId, 
+//         { $push: { comments: newComment } },  // Добавяме новия коментар в масива с коментари на транспорта
+//         { new: true }
+//     )
+//     .then(updatedTransport => {
+//         if (!updatedTransport) {
+//             return res.status(404).json({ message: 'Transport not found' });
+//         }
+//         res.status(200).json(updatedTransport);  // Връщаме актуализирания транспорт
+//     })
+//     .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
+// }
+
+// function deleteCommentFromTransport(req, res, next) {
+//     const { transportId, commentId } = req.params;  // Извличаме ID на транспорт и коментар от URL параметрите
+//     const { _id: userId } = req.user;  // Извличаме ID на потребителя
+
+//     // Намираме и изтриваме коментара
+//     transportModel.findByIdAndUpdate(
+//         transportId,
+//         { $pull: { comments: { _id: commentId, userId } } },  // Изтриваме коментара, ако той принадлежи на потребителя
+//         { new: true }
+//     )
+//     .then(updatedTransport => {
+//         if (!updatedTransport) {
+//             return res.status(404).json({ message: 'Transport not found or comment not found' });
+//         }
+//         res.status(200).json(updatedTransport);  // Връщаме актуализирания транспорт
+//     })
+//     .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
+// }
+
+// // Функция за получаване на всички коментари към транспорт
+// function getComments(req, res, next) {
+//     const { transportId } = req.params;  // Извличаме ID на транспорта от URL параметрите
+
+//     // Намираме транспорт по ID и попълваме коментарите
+//     transportModel.findById(transportId)
+//         .populate('comments')  // Попълваме данни за коментарите
+//         .then(transport => {
+//             if (!transport) {
+//                 return res.status(404).json({ message: 'Transport not found' });
+//             }
+//             res.status(200).json(transport.comments);  // Връщаме само коментарите
+//         })
+//         .catch(next);  // Прехвърляне на грешката към middleware-а за грешки
+// }
 
 
 module.exports = {
@@ -225,8 +229,8 @@ module.exports = {
     subscribe,
     editTransport,
     deleteTransport,
-    addCommentToTransport,
-    deleteCommentFromTransport,
-    getComments,
+    // addCommentToTransport,
+    // deleteCommentFromTransport,
+    // getComments,
     
 }

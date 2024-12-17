@@ -16,7 +16,7 @@
           <h2>{{transport.name}}</h2>
           <h2>{{transport.type}}</h2>
           <h2>{{transport.location}}</h2>
-
+          <p class="liked"><b>Likes:</b> <span> {{ transport.subscribers.length || 0 }}</span></p>
           <!-- <a [routerLink]="furniture._id" class="details-button">Details</a> -->
           <a [routerLink]="['/transports', transport._id]" class="details-button">Details</a>
 

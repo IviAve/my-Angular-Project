@@ -19,8 +19,8 @@ export class DetailsTransportComponent implements OnInit {
 
   transport = {} as Transport;
   user = {} as UserForAuth;
-  comments: any[] = [];
-  newComment: string = ''; 
+  // comments: any[] = [];
+  // newComment: string = ''; 
   isOwner: boolean = false;
 
   constructor(
@@ -41,7 +41,9 @@ export class DetailsTransportComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
-
+  get isLiked(): boolean {
+    return this.transport.subscribers.some(el => el == this.userService.user?._id);
+  }
 
   ngOnInit(): void {
     const transportId = this.route.snapshot.params['transportId'];
@@ -82,6 +84,14 @@ export class DetailsTransportComponent implements OnInit {
         console.error('Error deleting transport:', err);
         alert('Failed to delete transport. Please try again later.');
       }
+    });
+  }
+
+  onLike(event: Event) {
+    event.preventDefault();
+    const id = this.route.snapshot.params['transportId'];
+    this.apiService.likeTransport(id).subscribe(() => {
+      this.router.navigate(['/catalog-transport']);
     });
   }
   

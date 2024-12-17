@@ -40,7 +40,7 @@ function createFurniture(req, res, next) {
         imageUrl,
         summary,
         userId,  // Свързваме мебелта с текущия потребител
-        subscribers: [userId]
+        subscribers: []
           // Потребителят ще бъде в масива subscribers
     })
     .then(furniture => {

@@ -1,6 +1,6 @@
 export interface User {
-  furnitures: string[];
-  transports: string[];
+  // furnitures: string[];
+  // transports: string[];
   
   _id: string;
   tel: string;

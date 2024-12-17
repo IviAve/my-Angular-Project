@@ -20,7 +20,11 @@
                 <p><strong>Created:</strong> <time>{{ transport.createdAt }}</time></p>
                 <p><strong>Updated:</strong> <time>{{ transport.updatedAt }}</time></p>
             </div>
+        
+        <p class="user"><b>Publish by:</b> <span> {{ transport.userId.username }}</span></p>
+         <p class="liked"><b>Likes:</b> <span> {{ transport.subscribers.length || 0 }}</span></p>
         </div>
+        
 
         <!-- Display Comments Section -->
         <!-- @if (comments.length > 0) {

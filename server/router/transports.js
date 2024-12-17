@@ -18,12 +18,12 @@ router.put('/:transportId', auth(), transportController.editTransport);
 router.delete('/:transportId', auth(), transportController.deleteTransport);
 
 // Добавяне на коментар към транспорт
-router.post('/transports/:transportId/comments', auth(), transportController.addCommentToTransport);
+//router.post('/transports/:transportId/comments', auth(), transportController.addCommentToTransport);
 // Пример за сървърен маршрут за получаване на коментари
-router.get('/transports/:transportId/comments', auth(), transportController.getComments);
+//router.get('/transports/:transportId/comments', auth(), transportController.getComments);
 
 // Изтриване на коментар от транспорт
-router.delete('/transports/:transportId/comments/:commentId', auth(), transportController.deleteCommentFromTransport);
+//router.delete('/transports/:transportId/comments/:commentId', auth(), transportController.deleteCommentFromTransport);
 
 //router.get('/last-three',furnitureController.getLastThreeItems)
 

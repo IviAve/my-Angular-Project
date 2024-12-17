@@ -57,11 +57,15 @@ const transportSchema = new mongoose.Schema({
         type: ObjectId,
        ref: "User"
       },
+      subscribers: [{
+        type: ObjectId,
+        ref: "User"
+    }],
 
-  comments: [{
-            type: ObjectId,
-            ref: "Comments"
-        }],
+  // comments: [{
+  //           type: ObjectId,
+  //           ref: "Comments"
+  //       }],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Transport', transportSchema);
