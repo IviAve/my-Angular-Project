@@ -25,7 +25,7 @@ export const routes: Routes = [
   //   Start - User routing
   { path: 'login', component: LoginComponent,canActivate: [loggedGuard] },
   { path: 'register', component: RegisterComponent,canActivate: [loggedGuard] },
-  { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent ,},
   //   End - User routing
 {path: 'about-us', component: AboutUsComponent},
   // Start - furniture routing
@@ -35,14 +35,15 @@ export const routes: Routes = [
 
   {path: 'catalog-furniture',component: CatalogFurnitureComponent},
   
-  {
-    path: 'add-furniture',
-    loadComponent: () =>
-      import('./furniture/add-furniture/add-furniture.component').then(
-        (c) => c.AddFurnitureComponent
-      ),
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'add-furniture',
+  //   loadComponent: () =>
+  //     import('./furniture/add-furniture/add-furniture.component').then(
+  //       (c) => c.AddFurnitureComponent
+  //     ),
+  //   canActivate: [AuthGuard],
+  // },
+  {path:'add-furniture', component: AddFurnitureComponent, canActivate: [AuthGuard]},
   
   { path:'edit-furniture/:furnitureId', component: EditFurnitureComponent,canActivate: [AuthGuard], },
 
@@ -62,24 +63,20 @@ export const routes: Routes = [
 
   {path: 'catalog-transport',component: CatalogTransportComponent},
   
-  {
-    path: 'add-transport',
-    loadComponent: () =>
-      import('./transport/add-transport/add-transport.component').then(
-        (c) => c.AddTransportComponent
-      ),
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'add-transport',
+  //   loadComponent: () =>
+  //     import('./transport/add-transport/add-transport.component').then(
+  //       (c) => c.AddTransportComponent
+  //     ),
+  //   canActivate: [AuthGuard],
+  // },
   
+  {path:'add-transport', component: AddTransportComponent, canActivate: [AuthGuard]},
   { path:'edit-transport/:transportId', component: EditTransportComponent,canActivate: [AuthGuard], },
 
 
   
-  
-  //  {path:'add-transport', component: AddTransportServicesComponent},
-  // {path:'details-transport', component: DetailsTransportServicesComponent},
-  // {path:'catalog-transport', component: CatalogTransportServicesComponent},
-  // {path:'edit-transport-services', component: EditTransportServicesComponent},
 
   { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },

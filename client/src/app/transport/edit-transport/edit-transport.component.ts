@@ -7,12 +7,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transport } from '../../types/transport';
 import { UserService } from '../../user/user.service';
-
+import { ImageUrlDirective } from '../../directives/image-url.directive';
 
 @Component({
   selector: 'app-edit-transport',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ImageUrlDirective],
   templateUrl: './edit-transport.component.html',
   styleUrl: './edit-transport.component.css'
 })

@@ -13,4 +13,8 @@ export class ErrorMsgService {
   setError(error: any): void {
     this.apiError$$.next(error);
   }
+
+  clearError() {
+    this.apiError$$.next(null);
+  }
 }

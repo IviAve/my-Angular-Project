@@ -9,7 +9,7 @@
     padding: 40px;
     box-sizing: border-box;
     text-align: center;
-    background: #99d6cc;
+    background: #8ca39f;
     box-shadow: 0px 0px 32px 0px #325e50, -14px -14px 20px #19211d;
 }
 
@@ -28,7 +28,7 @@ textarea {
     width: 100%;
     min-width: 20vw;
     min-height: 7em;
-    border: 2px solid #86a480;
+    border: 2px solid #5c645a;
     border-radius: 0.7em;
     font-size: 26px;
     border-bottom-color: #ecf0f3;
@@ -67,7 +67,7 @@ textarea {
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: #76a29b;
+    background: #4d6c67;
     box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #191c21;
 }
 

@@ -1,8 +1,6 @@
 <!-- homepage -->
 
-@if(errorMsg) {
-  <app-error-msg></app-error-msg>
-}
+
 <section id="login-page" class="auth">
   <form id="login" #form="ngForm" (ngSubmit)="login(form)">
      
@@ -74,5 +72,9 @@
               <span>If you don't have profile click <a routerLink="/register" style="color: red;">here</a></span>
           </p>
       </div>
+      @if (hasError) {
+        <app-error-msg />
+        }
   </form>
+  
 </section>

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ImageUrlDirective } from '../../directives/image-url.directive';
 @Component({
   selector: 'app-add-transport',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ImageUrlDirective],
   templateUrl: './add-transport.component.html',
   styleUrl: './add-transport.component.css',
 })

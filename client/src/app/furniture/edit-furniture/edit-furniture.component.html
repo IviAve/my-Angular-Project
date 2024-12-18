@@ -111,15 +111,20 @@
         #inputImageUrl="ngModel"
         [ngModel]="furniture?.imageUrl"
         required
+        appImageUrlValidator
         minlength="5">
           @if(inputImageUrl?.touched){
               <div>
                 @if(inputImageUrl?.errors?.['required']){
                 <p class="error"> Image is required.</p>
                 }
-                <!---->
-               
-              </div>
+               </div>
+               @if(inputImageUrl?.errors?.['urlValidator']){
+                <div class="error">
+                  <p>Invalid image URL format.</p>
+                </div>
+                }
+              
               }
 
           <label for="summary">Summary:</label>

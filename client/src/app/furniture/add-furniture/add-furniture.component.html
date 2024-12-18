@@ -91,14 +91,16 @@
           ngModel
         #inputPhone="ngModel"
         required
-        minlength="5">
+        minlength="9">
           @if(inputPhone?.touched){
               <div>
                 @if(inputPhone?.errors?.['required']){
                 <p class="error">Phone number  is required.</p>
                 }
                 <!---->
-                
+                @if(inputPhone?.errors?.['minlength']){
+                  <p class="error">Phone must be at least 9 characters long.</p>
+                  }
               </div>
               }
 
@@ -107,6 +109,7 @@
           ngModel
         #inputImageUrl="ngModel"
         required
+        appImageUrlValidator
         minlength="5">
           @if(inputImageUrl?.touched){
               <div>
@@ -114,8 +117,12 @@
                 <p class="error"> Image is required.</p>
                 }
                 <!---->
-               
               </div>
+              @if(inputImageUrl?.errors?.['urlValidator']){
+                <div class="error">
+                  <p>Invalid image URL format.</p>
+                </div>
+                }
               }
 
           <label for="summary">Summary:</label>

@@ -135,6 +135,7 @@
             ngModel
           #inputImageUrl="ngModel"
           required
+          appImageUrlValidator
           [ngModel]="transport?.imageUrl"
           minlength="5">
             @if(inputImageUrl?.touched){
@@ -142,10 +143,13 @@
                   @if(inputImageUrl?.errors?.['required']){
                   <p class="error"> Image is required.</p>
                   }
-                  
-                 
-                </div>
+                 </div>
+                 @if(inputImageUrl?.errors?.['urlValidator']){
+                  <div class="error">
+                    <p>Invalid image URL format.</p>
+                  </div>
                 }
+              }
   
             <label for="summary">Summary:</label>
             <textarea name="summary" id="summary"
