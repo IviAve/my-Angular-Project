@@ -5,11 +5,12 @@ import { Furniture } from '../../types/furniture';
 import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
 import { UserForAuth } from '../../types/user';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-details-furniture',
   standalone: true,
-  imports: [HomeComponent,RouterLink],
+  imports: [HomeComponent,RouterLink,UpperCasePipe, DatePipe],
   templateUrl: './details-furniture.component.html',
   styleUrl: './details-furniture.component.css',
 })

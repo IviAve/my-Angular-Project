@@ -107,7 +107,7 @@ function getFurniture(req, res, next) {
                 // res.json(furniture);
 
                 res.status(200).json(furniture);  // Статус 200
-            console.log('Furniture found and response sent'); // 
+            //console.log('Furniture found and response sent'); // 
             res.end();
         })
         .catch(next);

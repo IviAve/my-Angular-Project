@@ -17,11 +17,11 @@
                 <h3>{{ transport.summary }}</h3>
           
                 <!-- Display the created and updated dates -->
-                <p><strong>Created:</strong> <time>{{ transport.createdAt }}</time></p>
-                <p><strong>Updated:</strong> <time>{{ transport.updatedAt }}</time></p>
+                <p><strong>Created:</strong> <time>{{ transport.createdAt |  date : "yyyy-mm-dd-hh:mm:ss"}}</time></p>
+                <p><strong>Updated:</strong> <time>{{ transport.updatedAt |  date : "yyyy-mm-dd-hh:mm:ss"}}</time></p>
             </div>
         
-        <p class="user"><b>Publish by:</b> <span>{{ transport.userId.username }}</span></p>
+        <p class="user"><b>Publish by:</b> <span>{{ transport.userId.username | uppercase }}</span></p>
          <p class="liked"><b>Likes:</b> <span> {{ transport.subscribers.length || 0 }}</span></p>
         </div>
         

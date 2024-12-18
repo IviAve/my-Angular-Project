@@ -25,7 +25,7 @@ export const routes: Routes = [
   //   Start - User routing
   { path: 'login', component: LoginComponent,canActivate: [loggedGuard] },
   { path: 'register', component: RegisterComponent,canActivate: [loggedGuard] },
-  { path: 'profile', component: ProfileComponent ,},
+  { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard]},
   //   End - User routing
 {path: 'about-us', component: AboutUsComponent},
   // Start - furniture routing

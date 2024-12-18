@@ -19,10 +19,10 @@
         <!-- Display the created date -->
           <!-- Display the created and updated dates -->
 
-  <p><strong>Created:</strong> <time>{{ furniture.createdAt }}</time></p>
-  <p><strong>Updated:</strong> <time>{{ furniture.updatedAt }}</time></p>
+  <p><strong>Created:</strong> <time>{{ furniture.createdAt |  date : "yyyy-mm-dd-hh:mm:ss" }}</time></p>
+  <p><strong>Updated:</strong> <time>{{ furniture.updatedAt  |  date : "yyyy-mm-dd-hh:mm:ss"}}</time></p>
 </div>
-<p class="user"><b>Publish by:</b> <span> {{ furniture.userId.username }}</span></p>
+<p class="user"><b>Publish by:</b> <span> {{ furniture.userId.username | uppercase}}</span></p>
  <p class="liked"><b>Likes:</b> <span> {{ furniture.subscribers.length || 0 }}</span></p>
 </div>
 <!-- comment  -->

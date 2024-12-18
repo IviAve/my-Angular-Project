@@ -162,3 +162,35 @@
   font-size: 60px;
   font-family: "Agency FB";
 }
+
+h1 {
+  text-align: center; /* Центрира текста хоризонтално */
+  font-size: 24px; /* Може да регулираш размера на шрифта */
+  margin: 0; /* Премахва маргините около елемента */
+  padding: 0; /* Премахва падинга */
+  text-decoration: underline;
+}
+
+.typing-text {
+  color: rgb(121, 8, 40); 
+  display: inline-block;
+  overflow: hidden; /* Скрива текста, докато не бъде изписан */
+  white-space: nowrap; /* Не допуска пренасяне на текста на нов ред */
+  border-right: 4px solid #000; /* Добавя мигаща линия в края */
+  width: 0; /* Започваме с ширина 0 */
+  animation: typing 4s steps(30) 1s forwards, blink 0.75s step-end infinite; /* Анимация */
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #000; }
+}

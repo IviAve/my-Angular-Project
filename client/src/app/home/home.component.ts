@@ -8,6 +8,7 @@ import { ApiService } from '../api.service';
 import { ElapsedTimePipe } from '../shared/pipes/elapsed-time.pipe';
 
 
+import { trigger, transition, style, animate, keyframes } from '@angular/animations'; 
 
 
 
@@ -17,6 +18,14 @@ import { ElapsedTimePipe } from '../shared/pipes/elapsed-time.pipe';
   imports: [RouterLink, LoaderComponent,CatalogFurnitureComponent ,ElapsedTimePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+
+  animations: [
+    trigger('typing', [
+      transition(':enter', [
+        animate('4s steps(30)', style({ width: '100%' })) // Изписване на текста
+      ])
+    ])
+  ]
 })
 export class HomeComponent  implements OnInit{
   // get isLoggedIn(): boolean {

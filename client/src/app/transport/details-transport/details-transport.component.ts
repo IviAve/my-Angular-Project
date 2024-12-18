@@ -6,11 +6,12 @@ import { Transport } from '../../types/transport';
 import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
 import { UserForAuth } from '../../types/user';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-details-transport',
   standalone: true,
-  imports: [RouterLink,HomeComponent],
+  imports: [RouterLink,HomeComponent,UpperCasePipe, DatePipe],
   templateUrl: './details-transport.component.html',
   styleUrl: './details-transport.component.css'
 })
