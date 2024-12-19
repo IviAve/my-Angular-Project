@@ -78,7 +78,7 @@ export const routes: Routes = [
 
   
 
-  { path: 'error', component: ErrorMsgComponent },
+  //{ path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

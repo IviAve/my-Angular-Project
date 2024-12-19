@@ -2,6 +2,17 @@
     <h1>All furniture</h1>
 <section id="catalog-furniture">
  
+  @if (hasError) {
+    <app-error-msg />
+    }
+    <!-- -->
+
+    @else if (isLoading) {
+      <app-loader />
+      }
+      <!-- -->
+      @else {
+
   @if (furnitures.length > 0 ) {
   @for (furniture of furnitures; track $index) {
   
@@ -20,10 +31,10 @@
 
 
       </div>
-
+    
   </div>
-  
-  
+
+
   }
   <!---->
 }
@@ -31,5 +42,6 @@
   @else {
   <h3 class="no-articles">No used furniture yet</h3>
   }
+}
 </section>
   

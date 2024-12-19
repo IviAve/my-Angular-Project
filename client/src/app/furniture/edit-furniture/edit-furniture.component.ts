@@ -7,21 +7,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Furniture } from '../../types/furniture';
 import { UserService } from '../../user/user.service';
 import { ImageUrlDirective } from '../../directives/image-url.directive';
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-edit-furniture',
   standalone: true,
-  imports: [FormsModule, ImageUrlDirective],
+  imports: [FormsModule, ImageUrlDirective,ErrorMsgComponent],
   templateUrl: './edit-furniture.component.html',
   styleUrl: './edit-furniture.component.css',
 })
 export class EditFurnitureComponent implements OnInit {
   furniture: Furniture | null = null;
+  hasError: boolean = false;
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private userService: UserService,
+    private errorMsgService: ErrorMsgService,
     private route: ActivatedRoute
   ) {}
 
@@ -75,11 +81,13 @@ export class EditFurnitureComponent implements OnInit {
     // Актуализираме мебелта чрез API
     this.apiService.updateFurniture(this.furniture._id, updatedFurniture).subscribe({
       next: () => {
+        this.hasError = false;
+        this.errorMsgService.clearError();
         this.router.navigate(['/catalog-furniture']); // Пренасочваме към каталога след успешна редакция
         form.reset(); // Нулираме формата
       },
-      error: (err) => {
-        console.error('Error updating furniture:', err);
+      error: () => {
+        this.hasError = true;
       }
     });
   }

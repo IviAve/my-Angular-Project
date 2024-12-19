@@ -148,7 +148,9 @@
           }
 
 
-
+          @if (hasError) {
+            <app-error-msg />
+            }
             <input
             [disabled]="form.invalid"
         [style]="{ backgroundColor: form.invalid ? 'red' : '#235' }" 

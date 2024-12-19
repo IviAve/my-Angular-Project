@@ -162,7 +162,9 @@
               }
             </div>
             }
-  
+            @if (hasError) {
+              <app-error-msg />
+              }
   
             <input
             class="public"

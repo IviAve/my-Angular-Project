@@ -6,11 +6,15 @@ import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
 import { UserForAuth } from '../../types/user';
 import { DatePipe, UpperCasePipe } from '@angular/common';
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-details-furniture',
   standalone: true,
-  imports: [HomeComponent,RouterLink,UpperCasePipe, DatePipe],
+  imports: [HomeComponent,RouterLink,UpperCasePipe, DatePipe,LoaderComponent,ErrorMsgComponent],
   templateUrl: './details-furniture.component.html',
   styleUrl: './details-furniture.component.css',
 })
@@ -18,13 +22,20 @@ export class DetailsFurnitureComponent implements OnInit {
   furniture = {} as Furniture;
   user = {} as UserForAuth;
   isOwner: boolean = false;
+  isLoading: boolean = true;
+  hasError: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private errorMsgService: ErrorMsgService
+  )
+   {
+    this.errorMsgService.apiError$.subscribe((err) => {
+    this.hasError = !!err;
+  });}
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;

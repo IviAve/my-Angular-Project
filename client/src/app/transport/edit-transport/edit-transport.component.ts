@@ -9,10 +9,15 @@ import { Transport } from '../../types/transport';
 import { UserService } from '../../user/user.service';
 import { ImageUrlDirective } from '../../directives/image-url.directive';
 
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
+
 @Component({
   selector: 'app-edit-transport',
   standalone: true,
-  imports: [FormsModule, ImageUrlDirective],
+  imports: [FormsModule, ImageUrlDirective,ErrorMsgComponent],
   templateUrl: './edit-transport.component.html',
   styleUrl: './edit-transport.component.css'
 })
@@ -20,12 +25,14 @@ import { ImageUrlDirective } from '../../directives/image-url.directive';
 
 export class EditTransportComponent implements OnInit {
   transport: Transport | null = null;
+  hasError: boolean = false;
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorMsgService: ErrorMsgService,
   ) {}
 
   ngOnInit(): void {
@@ -79,11 +86,13 @@ export class EditTransportComponent implements OnInit {
     // Актуализираме мебелта чрез API
     this.apiService.updateTransport(this.transport._id, updatedTransport).subscribe({
       next: () => {
+        this.hasError = false;
+        this.errorMsgService.clearError();
         this.router.navigate(['/catalog-transport']); // Пренасочваме към каталога след успешна редакция
         form.reset(); // Нулираме формата
       },
-      error: (err) => {
-        console.error('Error updating transport:', err);
+      error: () => {
+        this.hasError = true;
       }
     });
   }

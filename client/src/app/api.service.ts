@@ -69,8 +69,10 @@ export class ApiService {
     }
 
 
-
-
+    getMyFurnitures(userId: string | undefined) {
+      return this.http.get<Furniture[]>(`/api/furnitures?userId=${userId}`);
+    }
+    
 
     // TRANSPORT SERVICE
 

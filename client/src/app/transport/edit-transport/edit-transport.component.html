@@ -2,7 +2,7 @@
     <form id="create" #form="ngForm" (ngSubmit)="editTransport(form)">
         <div class="container">
             <div class="furniture-logo"></div>
-            <h1>Add Transport</h1>
+            <h1>Edit Transport</h1>
             
   
             <label for="name">First and Last Name:</label>
@@ -170,7 +170,9 @@
               }
             </div>
             }
-  
+            @if (hasError) {
+              <app-error-msg />
+              }
   
             <input
             class="public"

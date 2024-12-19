@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptors([appInterceptor])),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withHashLocation()),
+    provideRouter(routes,withHashLocation() ),  // add withHashLocation() for reloud details page
     importProvidersFrom(BrowserAnimationsModule)
   ],
 };

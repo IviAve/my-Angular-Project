@@ -8,6 +8,11 @@ import { HomeComponent } from '../../home/home.component';
 import { UserForAuth } from '../../types/user';
 import { DatePipe, UpperCasePipe } from '@angular/common';
 
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
+
 @Component({
   selector: 'app-details-transport',
   standalone: true,

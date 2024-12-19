@@ -9,17 +9,26 @@ import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { ProfileDetails } from '../../types/user';
 import { UserService } from '../user.service';
-
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
+import { ApiService } from '../../api.service';
+import { Furniture } from '../../types/furniture';
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { Transport } from '../../types/transport';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,ErrorMsgComponent,],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
   isEditMode: boolean = false;
+  isLoading: boolean = true;
+  hasError: boolean = false;
+  myFurnitures: Furniture[] = [];
+  myTransports: Transport[] = [];
 
   profileDetails: ProfileDetails = {
     username: '',
@@ -37,7 +46,11 @@ export class ProfileComponent implements OnInit {
     tel: new FormControl(''),
   });
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private errorMsgService: ErrorMsgService,
+    private apiService: ApiService,
+    ) {}
 
   ngOnInit(): void {
     const { username, email, tel } = this.userService.user!;
