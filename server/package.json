@@ -1,7 +1,7 @@
 {
-  "name": "rest-api",
+  "name": "server",
   "version": "1.0.0",
-  "description": "REST-api ",
+  "description": "server ",
   "main": "index.js",
   "scripts": {
     "start": "node .",

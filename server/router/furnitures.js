@@ -14,7 +14,7 @@ router.get('/:furnitureId', furnitureController.getFurniture);
 
 router.put('/:furnitureId/subscribe', auth(), furnitureController.subscribe);
 //router.put('/:furnitureId', auth(), furnitureController.like);
-router.put('/:furnitureId', auth(), furnitureController.editFurniture);
+router.put('/:furnitureId/', auth(), furnitureController.editFurniture);
 router.delete('/:furnitureId', auth(), furnitureController.deleteFurniture);
 
 

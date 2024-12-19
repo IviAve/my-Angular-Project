@@ -35,7 +35,8 @@ export class DetailsFurnitureComponent implements OnInit {
    {
     this.errorMsgService.apiError$.subscribe((err) => {
     this.hasError = !!err;
-  });}
+  });
+}
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -58,6 +59,7 @@ ngOnInit(): void {
 
   this.apiService.getSingleFurniture(furnitureId).subscribe((furniture) => {
     this.furniture = furniture;
+    this.isLoading = false;
     console.log('Furniture data:', this.furniture); // Логване на данните за мебелта
 
     // Проверка за наличието на userId
@@ -83,12 +85,18 @@ ngOnInit(): void {
   
     const furnitureId = this.getFurnitureId;
   
+    if (!this.isOwner) {
+      return alert('Only owner can delete !');
+    }
     this.apiService.deleteFurniture(furnitureId).subscribe({
       next: () => {
         alert('Furniture deleted successfully!');
+        this.hasError = false;
+        this.errorMsgService.clearError();
         this.router.navigate(['/catalog-furniture']);
       },
       error: (err) => {
+        this.hasError = true;
         console.error('Error deleting furniture:', err);
         alert('Failed to delete furniture. Please try again later.');
       }
@@ -98,8 +106,16 @@ ngOnInit(): void {
   onLike(event: Event) {
     event.preventDefault();
     const id = this.route.snapshot.params['furnitureId'];
-    this.apiService.likeFurniture(id).subscribe(() => {
-      this.router.navigate(['/catalog-furniture']);
+    this.apiService.likeFurniture(id).subscribe({
+      next: () => {
+        this.hasError = false;
+        this.errorMsgService.clearError();
+        this.router.navigate(['/catalog-furniture']);
+      },
+      error: () => {
+        this.hasError = true;
+      },
+      
     });
   }
   

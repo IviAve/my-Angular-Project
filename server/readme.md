@@ -1,121 +1,66 @@
-# REST API
+# Configuration for Environment Variables
 
-A REST API built using Node.js and Express.js, providing various endpoints for managing resources. This project uses MongoDB as the database.
 
-## Table of Contents
+first npm i
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Scripts](#scripts)
-- [Dependencies](#dependencies)
-- [Development Dependencies](#development-dependencies)
-- [Contributing](#contributing)
-- [License](#license)
+next  npm start
+
+
+This project uses environment-specific configurations to handle different settings for development and production environments. The configuration is loaded based on the current `NODE_ENV` value, and if `NODE_ENV` is not set, it defaults to `'development'`.
+
+## Configuration Details
+
+### Environment Variables
+
+The `config` object contains two configurations:
+
+1. **Development**:
+   - **Port**: The application will run on `3000` by default, but it can be overridden by setting the `PORT` environment variable.
+   - **Database URL**: The MongoDB connection URL is set to `'mongodb://localhost:27017/Used-Furniture'` by default for development.
+   - **Origin**: The application allows cross-origin requests from `http://localhost:5555` and `http://localhost:4200`.
+
+2. **Production**:
+   - **Port**: The application will run on the port specified by the `PORT` environment variable or defaults to `3000`.
+   - **Database URL**: The MongoDB connection URL is set using the `DB_URL_CREDENTIALS` environment variable.
+   - **Origin**: No origins are specified for production by default, but this can be customized.
+
+### Usage
+
+To use this configuration:
+
+1. **Set the `NODE_ENV` variable**:
+   - `NODE_ENV=development` for local development.
+   - `NODE_ENV=production` for production.
+
+2. **Set the required environment variables**:
+   - `PORT`: The port on which the server will listen (optional, defaults to `3000`).
+   - `DB_URL_CREDENTIALS`: The MongoDB connection URL for production (required in production).
+
+### Example
+
+# Express Application with MongoDB and CORS
+
+This project sets up an Express.js application with MongoDB connectivity and CORS handling. It uses environment-based configurations, connects to the MongoDB database, and includes basic error handling.
 
 ## Features
 
-- Authentication and authorization with JSON Web Tokens (JWT)
-- Secure password hashing using bcrypt
-- Environment variable management with dotenv
-- CORS enabled for cross-origin resource sharing
-- MongoDB integration using Mongoose
-- Error handling middleware
+- **MongoDB Connection**: The application connects to a MongoDB database using a custom `dbConnector`.
+- **CORS**: Configurable Cross-Origin Resource Sharing (CORS) settings to allow or restrict which origins can access the API.
+- **Error Handling**: A global error handler to catch and process errors in the application.
+- **Environment Configuration**: Loads environment variables from a `.env` file for flexibility and security.
 
-## Getting Started
+## Project Setup
 
-To run this project locally, follow the steps below.
+### 1. **Set up environment variables**
 
-### Prerequisites
+Ensure you have a `.env` file in the root of your project with the following variables:
 
-- Node.js (version 14 or higher)
-- MongoDB (local or cloud instance)
-- npm (comes with Node.js)
+```env
+PORT=3000
+DB_URL_CREDENTIALS=<your-database-url>
+NODE_ENV=development
 
-## Installation
 
-1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/BoogyHS/REST-api.git
-   cd REST-api
-   ```
 
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Create a `.env` file in the root directory and configure the following environment variables:
-
-   ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_secret_key
-   ```
-
-## Usage
-
-### Running the Server
-
-- To start the server in production mode:
-
-  ```bash
-  npm start
-  ```
-
-- To start the server in development mode (with live reload):
-
-  ```bash
-  npm run dev
-  ```
-
-### API Endpoints
-
-Refer to the API documentation for available endpoints and their usage.
-
-## Scripts
-
-- `start`: Runs the application in production mode using Node.js
-- `dev`: Runs the application in development mode using nodemon
-
-## Dependencies
-
-- **bcrypt**: ^5.0.0
-- **cookie-parser**: ^1.4.5
-- **cors**: ^2.8.5
-- **dotenv**: ^8.2.0
-- **express**: ^4.17.1
-- **jsonwebtoken**: ^8.5.1
-- **mongoose**: ^5.9.19
-
-## Development Dependencies
-
-- **nodemon**: ^2.0.4
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -m 'Add feature name'`
-4. Push to the branch: `git push origin feature-name`
-5. Open a pull request.
-
-## Bugs and Issues
-
-If you encounter any issues, please report them [here](https://github.com/BoogyHS/REST-api/issues).
-
-## License
-
-This project is licensed under the [ISC License](https://opensource.org/licenses/ISC).
-
----
-
-**Author:** [BoogyHS](https://github.com/BoogyHS)
-
-For more information, visit the [project homepage](https://github.com/BoogyHS/REST-api#readme).
-
+FOR MORE INFO config\config.js C:\Users\sit97\Desktop\My_Engular_Project\my-Angular-Project\server\config\config.js

@@ -16,7 +16,7 @@ import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 @Component({
   selector: 'app-details-transport',
   standalone: true,
-  imports: [RouterLink,HomeComponent,UpperCasePipe, DatePipe],
+  imports: [RouterLink,HomeComponent,UpperCasePipe, DatePipe,LoaderComponent,ErrorMsgComponent],
   templateUrl: './details-transport.component.html',
   styleUrl: './details-transport.component.css'
 })
@@ -28,13 +28,20 @@ export class DetailsTransportComponent implements OnInit {
   // comments: any[] = [];
   // newComment: string = ''; 
   isOwner: boolean = false;
+  isLoading: boolean = true;
+  hasError: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private errorMsgService: ErrorMsgService
+  ) {
+    this.errorMsgService.apiError$.subscribe((err) => {
+      this.hasError = !!err;
+    });
+  }
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -56,6 +63,7 @@ export class DetailsTransportComponent implements OnInit {
   
     this.apiService.getSingleTransport(transportId).subscribe((transport) => {
       this.transport = transport;
+      this.isLoading = false;
       console.log('Transport data:', this.transport); // Логване на данните за мебелта
   
       // Проверка за наличието на userId
@@ -84,9 +92,12 @@ export class DetailsTransportComponent implements OnInit {
     this.apiService.deleteTransport(transportId).subscribe({
       next: () => {
         alert('Transport deleted successfully!');
+        this.hasError = false;
+        this.errorMsgService.clearError();
         this.router.navigate(['/catalog-transport']);
       },
       error: (err) => {
+        this.hasError = true;
         console.error('Error deleting transport:', err);
         alert('Failed to delete transport. Please try again later.');
       }
@@ -96,8 +107,16 @@ export class DetailsTransportComponent implements OnInit {
   onLike(event: Event) {
     event.preventDefault();
     const id = this.route.snapshot.params['transportId'];
-    this.apiService.likeTransport(id).subscribe(() => {
-      this.router.navigate(['/catalog-transport']);
+    this.apiService.likeTransport(id).subscribe({
+      next: () => {
+        this.hasError = false;
+        this.errorMsgService.clearError();
+        this.router.navigate(['/catalog-transport']);
+      },
+      error: () => {
+        this.hasError = true;
+      },
+      
     });
   }
   

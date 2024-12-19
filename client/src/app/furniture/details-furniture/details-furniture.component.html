@@ -1,4 +1,8 @@
 
+@if (isLoading) {
+  <app-loader />
+  }
+  @else {
 <section id="furniture-details">
     <h1>Details</h1>
     <div class="info-section">
@@ -25,6 +29,7 @@
 <p class="user"><b>Publish by:</b> <span> {{ furniture.userId.username | uppercase}}</span></p>
  <p class="liked"><b>Likes:</b> <span> {{ furniture.subscribers.length || 0 }}</span></p>
 </div>
+@if (hasError) {<app-error-msg />}
 <!-- comment  -->
 
 <!-- @for (comment of furniture.comments; track $index) {
@@ -79,10 +84,10 @@
       <button type="button" class="button" (click)="onLike($event)">Like</button>
     }
   }
-      
+
     </div>
   </section>
-  
+}
 
 
 
