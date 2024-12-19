@@ -1,6 +1,6 @@
 # my-Angular-Project
 
-# Configuration for Environment Variables
+# Configuration for server
 
 
 first npm i
