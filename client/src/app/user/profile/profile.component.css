@@ -1,27 +1,24 @@
-
-
-
 .profile {
   width: 70%; /* Увеличава ширината на прозореца */
   max-width: 600px; /* Може да увеличите или намалите тази стойност в зависимост от желаната ширина */
   margin: 2em auto 1rem;
   padding: 1em; /* Намаляване на padding за да намалим височината */
   border: 0.3em solid #df7e87;
-  border-radius: 1em;
+  border-radius: 50%; /* Прави контейнера елипсовиден */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #b87f8f;
   background-color: #d9c1c1;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   text-align: center;
-  height: 40%; /* Позволява на височината да бъде динамична */
+  height: auto; /* Позволява височината да бъде динамична */
 }
 
 .profile img {
-  width: 7em;
-  height: 7em;
+  width: 12em; /* Увеличаване на ширината на изображението */
+  height: 10em; /* Увеличаване на височината на изображението */
   margin: auto;
   display: block;
-  border-radius: 50%;
+  border-radius: 50%; /* Оформя изображението като елипса */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   max-width: 100%; /* Прави изображението по-гъвкаво */
 }
@@ -34,22 +31,11 @@
   letter-spacing: 0.05em;
 }
 
-/* .profile img {
-  width: 7em;
-  height: 7em;
-  margin: auto;
-  display: block;
-  border-radius: 50%;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-} */
-
-
-
-
 .profile:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .flex {
@@ -62,6 +48,7 @@
 
 .flex p:first-child {
   width: 30%;
+  font-size: 1.5em;
   text-align: right;
   margin: 0.5em;
   font-weight: bold;
@@ -70,6 +57,7 @@
 
 .flex p:last-child {
   width: 60%;
+  font-size: 1.5em;
   text-align: left;
   margin: 0.5em;
   font-weight: bold;

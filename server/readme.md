@@ -1,4 +1,4 @@
-# Configuration for Environment Variables
+# Configuration for SERVER
 
 
 first npm i
